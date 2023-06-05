@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from net import ZSSRNet
 from data import PairedDataSampler
@@ -62,7 +63,7 @@ def train(model, name, inp_minmax, gt_minmax, num_batches, learning_rate, crop_s
                 print(f"Iteration: {iter}, Loss: {cpu_loss}, Learning Rate: {learning_rate}")
                 print('Done training.')
                 break
-            
+
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -104,5 +105,6 @@ if __name__ == '__main__':
     save_name = args.name + '_' + args.inp_minmax + '_to_' + args.gt_minmax
     
     train(model, args.name, inp_minmax, gt_minmax, args.num_batches, args.lr, args.crop)
+    os.makedirs('checkpoints', exist_ok=True)
     torch.save(model.state_dict(), 'checkpoints/'+save_name+'.pt')
     

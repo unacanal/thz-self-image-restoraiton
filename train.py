@@ -143,5 +143,6 @@ if __name__ == '__main__':
                     '_to_' + target_name
     print(save_name)
     train(model, img, target, args.num_batches, args.lr, args.crop)
+    os.makedirs('checkpoints', exist_ok=True)
     torch.save(model.state_dict(), 'checkpoints/'+save_name+'.pt')
     test(model, target, save_name)
