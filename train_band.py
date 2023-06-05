@@ -1,27 +1,22 @@
-import os
 import numpy as np
 from net import ZSSRNet
-from data import DataSampler
+from data import PairedDataSampler
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 from torch.nn import init
-import PIL
-import sys
 from torchvision import transforms
 import tqdm
 import argparse
-import warnings
-warnings.filterwarnings("ignore")
 
 
 def weights_init_kaiming(m):
     classname = m.__class__.__name__
     if classname.find('Conv') != -1:
-        init.kaiming_normal(m.weight.data, a=0, mode='fan_in')
+        init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
     elif classname.find('Linear') != -1:
-        init.kaiming_normal(m.weight.data, a=0, mode='fan_in')
+        init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
     elif classname.find('BatchNorm2d') != -1:
         init.normal(m.weight.data, 1.0, 0.02)
         init.constant(m.bias.data, 0.0)
@@ -33,10 +28,11 @@ def adjust_learning_rate(optimizer, new_lr):
         param_group['lr'] = new_lr
 
 
-def train(model, img, target, num_batches, learning_rate, crop_size):
+def train(model, name, inp_minmax, gt_minmax, num_batches, learning_rate, crop_size):
     loss = nn.L1Loss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    sampler = DataSampler(img, target, crop_size)
+    sampler = PairedDataSampler(name, inp_minmax, gt_minmax, crop_size)
+
     model.cuda()
     with tqdm.tqdm(total=num_batches, miniters=1, mininterval=0) as progress:
         for iter, (hr, lr) in enumerate(sampler.generate_data()):
@@ -68,24 +64,6 @@ def train(model, img, target, num_batches, learning_rate, crop_size):
                 break
             
 
-def test(model, img, save_name):
-    model.eval()
-
-    img = transforms.ToTensor()(img)
-    img = torch.unsqueeze(img, 0)
-    input = Variable(img.cuda())
-    residual = model(input)
-    output = input + residual
-
-    output = output.cpu().data[0, :, :, :]
-    o = output.numpy()
-    o[np.where(o < 0)] = 0.0
-    o[np.where(o > 1)] = 1.0
-    output = torch.from_numpy(o)
-    output = transforms.ToPILImage()(output) 
-    output.save(f'results/{save_name}.png')
-
-
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--num_batches', type=int, default=15000, \
@@ -94,9 +72,9 @@ def get_args():
         help='Random crop size')
     parser.add_argument('--lr', type=float, default=0.00001, \
         help='Base learning rate for Adam')
-    parser.add_argument('--img', type=str, help='Path to input img')
-    parser.add_argument('--target', type=str, help='Path to target img')
-    parser.add_argument('--test_img', type=str, help='Path to test img')
+    parser.add_argument('--inp_minmax', type=str, help='Input THz range (tuple)')
+    parser.add_argument('--gt_minmax', type=str, help='Target THz range (tuple)')
+    parser.add_argument('--name', type=str, default='resol1951_2_e', help='Image name')
 
     args = parser.parse_args()
 
@@ -114,34 +92,17 @@ if __name__ == '__main__':
 
     args = get_args()
 
-    img = PIL.Image.open(args.img)
-
-    target = PIL.Image.open(args.target)
-    num_channels = len(np.array(target).shape)
-    if num_channels == 3:
-        model = ZSSRNet(input_channels = 3)
-    elif num_channels == 2:
-        model = ZSSRNet(input_channels = 1)
-    else:
-        print("Expecting RGB or gray image, instead got", target.size)
-        sys.exit(1)
-
+    model = ZSSRNet(input_channels = 1)
+    
     # Weight initialization
     model.apply(weights_init_kaiming)
+    
 
-    img_name = os.path.splitext(os.path.basename(args.img))[0]
-    target_name = os.path.splitext(os.path.basename(args.target))[0]
-
-    if '_'.join(img_name.split('_')[:-1]) == '_'.join(target_name.split('_')[:-1]):
-        # if two image names are same
-        save_name = '_'.join(img_name.split('_')[:-1]) + '_' + \
-                    img_name.split('_')[-1].split('THz')[0] + \
-                    '_to_' + target_name.split('_')[-1]
-    else:
-        save_name = '_'.join(img_name.split('_')[:-1]) + '_' + \
-                    img_name.split('_')[-1].split('THz')[0] + \
-                    '_to_' + target_name
-    print(save_name)
-    train(model, img, target, args.num_batches, args.lr, args.crop)
+    inp_minmax = tuple(map(float, args.inp_minmax.split(',')))
+    gt_minmax = tuple(map(float, args.gt_minmax.split(',')))
+    
+    save_name = args.name + '_' + args.inp_minmax + '_to_' + args.gt_minmax
+    
+    train(model, args.name, inp_minmax, gt_minmax, args.num_batches, args.lr, args.crop)
     torch.save(model.state_dict(), 'checkpoints/'+save_name+'.pt')
-    test(model, target, save_name)
+    
