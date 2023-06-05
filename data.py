@@ -20,9 +20,6 @@ class DataSampler:
             RandomCrop(crop_size),
             ToTensor()]) 
 
-    def create_hr_lr_pairs(self):
-        return (self.img, self.target)
-
     def generate_data(self):
         while True:
             gt, inp = self.pairs
