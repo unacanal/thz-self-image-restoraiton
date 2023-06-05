@@ -82,7 +82,9 @@ def test(model, img, save_name):
     o[np.where(o < 0)] = 0.0
     o[np.where(o > 1)] = 1.0
     output = torch.from_numpy(o)
-    output = transforms.ToPILImage()(output) 
+    output = transforms.ToPILImage()(output)
+    
+    os.makedirs('results', exist_ok=True)
     output.save(f'results/{save_name}.png')
 
 
