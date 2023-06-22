@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from net import ZSSRNet
+from net import ZSSRNet, CAIR
 from data import DataSampler
 import torch
 import torch.nn as nn
@@ -99,6 +99,7 @@ def get_args():
     parser.add_argument('--img', type=str, help='Path to input img')
     parser.add_argument('--target', type=str, help='Path to target img')
     parser.add_argument('--test_img', type=str, help='Path to test img')
+    parser.add_argument('--model', type=str, help='Model name')
 
     args = parser.parse_args()
 
@@ -120,10 +121,17 @@ if __name__ == '__main__':
 
     target = PIL.Image.open(args.target)
     num_channels = len(np.array(target).shape)
+    print('num_channels:', num_channels)
     if num_channels == 3:
-        model = ZSSRNet(input_channels = 3)
+        if args.model == 'CAIR':
+            model = CAIR(img_channel=3, width=16, middle_blk_num=1, enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1])
+        else:
+            model = ZSSRNet(input_channels = 3)
     elif num_channels == 2:
-        model = ZSSRNet(input_channels = 1)
+        if args.model == 'CAIR':
+            model = CAIR(img_channel=1, width=16, middle_blk_num=1, enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1])
+        else:
+            model = ZSSRNet(input_channels = 1)
     else:
         print("Expecting RGB or gray image, instead got", target.size)
         sys.exit(1)
@@ -146,5 +154,5 @@ if __name__ == '__main__':
     print(save_name)
     train(model, img, target, args.num_batches, args.lr, args.crop)
     os.makedirs('checkpoints', exist_ok=True)
-    torch.save(model.state_dict(), 'checkpoints/'+save_name+'.pt')
+    torch.save(model.state_dict(), os.path.join('checkpoints', args.model, save_name+'.pt'))
     test(model, target, save_name)
