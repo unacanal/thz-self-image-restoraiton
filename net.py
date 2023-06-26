@@ -361,9 +361,6 @@ class CAIR(nn.Module):
         color = self.conv1x1(color)
         color = x * color
         x = x + color
-
-        x = x + res_inp
-
         return x[:, :, :H, :W]
 
     def forward(self, x):
@@ -413,3 +410,60 @@ class CAIR(nn.Module):
         mod_pad_w = (self.padder_size - w % self.padder_size) % self.padder_size
         x = F.pad(x, (0, mod_pad_w, 0, mod_pad_h))
         return x
+    
+if __name__ == '__main__':
+    import resource
+    def using(point=""):
+        # print(f'using .. {point}')
+        usage = resource.getrusage(resource.RUSAGE_SELF)
+        global Total, LastMem
+
+        # if usage[2]/1024.0 - LastMem > 0.01:
+        # print(point, usage[2]/1024.0)
+        print(point, usage[2] / 1024.0)
+
+        LastMem = usage[2] / 1024.0
+        return usage[2] / 1024.0
+
+    img_channel = 1
+    width = 16
+    
+    enc_blks = [1, 1, 1]
+    middle_blk_num = 1
+    dec_blks = [1, 1, 1]
+    
+    print('enc blks', enc_blks, 'middle blk num', middle_blk_num, 'dec blks', dec_blks, 'width' , width)
+    
+    using('start . ')
+    # net = CAIR(img_channel=img_channel, width=width, middle_blk_num=middle_blk_num, 
+    #                   enc_blk_nums=enc_blks, dec_blk_nums=dec_blks, tta=True) # 122.03 GMac #params: 13.13M
+    net = ZSSRNet(input_channels=1)
+    using('network .. ')
+
+    # for n, p in net.named_parameters()
+    #     print(n, p.shape)
+
+    inp = torch.randn((1, 1, 256, 256))
+	
+    out = net(inp)
+    final_mem = using('end .. ')
+    # out.sum().backward()
+
+    # out.sum().backward()
+
+    # using('backward .. ')
+
+    # exit(0)
+	
+
+    from ptflops import get_model_complexity_info
+    inp_shape = (1, 256, 256)
+    macs, params = get_model_complexity_info(net, inp_shape, as_strings=True, print_per_layer_stat=True, verbose=True)
+    print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
+    print('{:<30}  {:<8}'.format('Number of parameters: ', params))
+    params = float(params[:-3])
+    macs = float(macs[:-4])
+
+    print(macs, params)
+
+    print('total .. ', params * 8 + final_mem)
