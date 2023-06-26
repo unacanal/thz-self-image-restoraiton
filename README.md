@@ -1,7 +1,7 @@
-# One-Shot Learning for Terahertz Image Restoration
+# Self-Supervised Hyperspectral Terahertz Image Restoration
 
 ## Overview
-This repository contains code for traning one-shot learning for THz Image restoration. 
+This repository contains code for training self-supervised hyperspectral image restoration.
 
 ## Training
 ```./train.sh```
