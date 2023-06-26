@@ -23,8 +23,8 @@ def test(model, img, save_dir, save_name):
     o[np.where(o > 1)] = 1.0
     output = torch.from_numpy(o)
     output = transforms.ToPILImage()(output)
+    os.makedirs(f'results/{save_dir}', exist_ok=True)
     output.save(f'results/{save_dir}/{save_name}.png')
-
 
 def get_args():
     parser = argparse.ArgumentParser()
