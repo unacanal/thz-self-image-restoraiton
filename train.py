@@ -99,7 +99,7 @@ def get_args():
     parser.add_argument('--img', type=str, help='Path to input img')
     parser.add_argument('--target', type=str, help='Path to target img')
     parser.add_argument('--test_img', type=str, help='Path to test img')
-    parser.add_argument('--model', type=str, help='Model name')
+    parser.add_argument('--model', type=str, default='ZSSR', help='Model name')
 
     args = parser.parse_args()
 
@@ -153,6 +153,6 @@ if __name__ == '__main__':
                     '_to_' + target_name
     print(save_name)
     train(model, img, target, args.num_batches, args.lr, args.crop)
-    os.makedirs('checkpoints', exist_ok=True)
+    os.makedirs(f'checkpoints/{args.model}', exist_ok=True)
     torch.save(model.state_dict(), os.path.join('checkpoints', args.model, save_name+'.pt'))
     test(model, target, save_name)
