@@ -11,6 +11,7 @@ import PIL
 import sys
 from torchvision import transforms
 import tqdm
+import wandb
 import argparse
 import warnings
 warnings.filterwarnings("ignore")
@@ -59,6 +60,9 @@ def train(model, img, target, num_batches, learning_rate, crop_size):
                 adjust_learning_rate(optimizer, new_lr=learning_rate)
                 print("Learning rate reduced to {lr}".format(lr=learning_rate) )
 
+            if iter % 100 == 0:
+                wandb.log({"Train loss": cpu_loss})
+                
             error.backward()
             optimizer.step()
 
@@ -100,6 +104,7 @@ def get_args():
     parser.add_argument('--target', type=str, help='Path to target img')
     parser.add_argument('--test_img', type=str, help='Path to test img')
     parser.add_argument('--model', type=str, default='ZSSR', help='Model name')
+    parser.add_argument('--exp', type=str, default='o2o', help='Experiment name')
 
     args = parser.parse_args()
 
@@ -116,7 +121,7 @@ if __name__ == '__main__':
     np.random.seed(random_seed)
 
     args = get_args()
-
+    
     img = PIL.Image.open(args.img)
 
     target = PIL.Image.open(args.target)
@@ -152,6 +157,7 @@ if __name__ == '__main__':
                     img_name.split('_')[-1].split('THz')[0] + \
                     '_to_' + target_name
     print(save_name)
+    wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}')
     train(model, img, target, args.num_batches, args.lr, args.crop)
     os.makedirs(f'checkpoints/{args.model}', exist_ok=True)
     torch.save(model.state_dict(), os.path.join('checkpoints', args.model, f'{save_name}.pt'))
