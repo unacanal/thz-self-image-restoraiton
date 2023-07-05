@@ -71,7 +71,7 @@ def train(model, img, target, args, save_name):
             
             if cpu_loss < best_loss:
                 best_loss = cpu_loss
-                torch.save(model.state_dict(), os.path.join('checkpoints', args.model, f'{save_name}_best.pt'))
+                torch.save(model.state_dict(), os.path.join('checkpoints', f'{args.model}_{args.exp}', f'{save_name}_best.pt'))
 
             error.backward()
             optimizer.step()
@@ -169,6 +169,6 @@ if __name__ == '__main__':
     print(save_name)
     wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}')
     train(model, img, target, args, save_name)
-    os.makedirs(f'checkpoints/{args.model}', exist_ok=True)
-    torch.save(model.state_dict(), os.path.join('checkpoints', args.model, f'{save_name}_latest.pt'))
+    os.makedirs(f'checkpoints/{args.model}_{args.exp}', exist_ok=True)
+    torch.save(model.state_dict(), os.path.join('checkpoints', f'{args.model}_{args.exp}', f'{save_name}_latest.pt'))
     test(model, target, save_name)
