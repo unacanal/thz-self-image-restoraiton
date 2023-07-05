@@ -75,3 +75,24 @@ class PairedDataSampler:
             gt_tensor = torch.unsqueeze(gt_tensor, 0)
             inp_tensor = torch.unsqueeze(inp_tensor, 0)
             yield gt_tensor, inp_tensor
+
+
+class TripleDataSampler:
+    def __init__(self, img, low_target, high_target, crop_size):
+        self.pairs = low_target, high_target, img
+
+        self.transform = transforms.Compose([
+            RandomRotationFromSequence([0, 90, 180, 270]),
+            RandomHorizontalFlip(),
+            RandomVerticalFlip(),
+            RandomCrop(crop_size),
+            ToTensor()]) 
+
+    def generate_data(self):
+        while True:
+            low_gt, high_gt, inp = self.pairs
+            low_gt_tensor, high_gt_tensor, inp_tensor = self.transform((low_gt, high_gt, inp))
+            low_gt_tensor = torch.unsqueeze(low_gt_tensor, 0)
+            high_gt_tensor = torch.unsqueeze(high_gt_tensor, 0)
+            inp_tensor = torch.unsqueeze(inp_tensor, 0)
+            yield low_gt_tensor, high_gt_tensor, inp_tensor
