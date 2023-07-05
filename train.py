@@ -34,10 +34,16 @@ def adjust_learning_rate(optimizer, new_lr):
         param_group['lr'] = new_lr
 
 
-def train(model, img, target, num_batches, learning_rate, crop_size):
+def train(model, img, target, args, save_name):
+    num_batches = args.num_batches
+    learning_rate = args.lr
+    crop_size = args.crop
+
     loss = nn.L1Loss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     sampler = DataSampler(img, target, crop_size)
+    
+    best_loss = float('inf')
     model.cuda()
     with tqdm.tqdm(total=num_batches, miniters=1, mininterval=0) as progress:
         for iter, (hr, lr) in enumerate(sampler.generate_data()):
@@ -62,7 +68,11 @@ def train(model, img, target, num_batches, learning_rate, crop_size):
 
             if iter % 100 == 0:
                 wandb.log({"Train loss": cpu_loss})
-                
+            
+            if cpu_loss < best_loss:
+                best_loss = cpu_loss
+                torch.save(model.state_dict(), os.path.join('checkpoints', args.model, f'{save_name}_best.pt'))
+
             error.backward()
             optimizer.step()
 
@@ -158,7 +168,7 @@ if __name__ == '__main__':
                     '_to_' + target_name
     print(save_name)
     wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}')
-    train(model, img, target, args.num_batches, args.lr, args.crop)
+    train(model, img, target, args, save_name)
     os.makedirs(f'checkpoints/{args.model}', exist_ok=True)
-    torch.save(model.state_dict(), os.path.join('checkpoints', args.model, f'{save_name}.pt'))
+    torch.save(model.state_dict(), os.path.join('checkpoints', args.model, f'{save_name}_latest.pt'))
     test(model, target, save_name)
