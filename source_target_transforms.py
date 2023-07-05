@@ -45,10 +45,13 @@ class RandomRotationFromSequence(object):
         Returns:
             PIL Image: Rotated image.
         """
-        hr, lr = data
         angle = self.get_params(self.degrees)
-        return F.rotate(hr, angle, self.resample, self.expand, self.center), \
-                F.rotate(lr, angle, self.resample, self.expand, self.center)
+        
+        result = []
+        for img in data:
+            result.append(F.rotate(img, angle, self.resample, self.expand, self.center))
+            
+        return result
 
 class RandomHorizontalFlip(object):
     """Horizontally flip the given PIL Image randomly with a probability of 0.5."""
@@ -60,10 +63,12 @@ class RandomHorizontalFlip(object):
         Returns:
             PIL Image: Randomly flipped image.
         """
-        hr, lr = data
         if random.random() < 0.5:
-            return F.hflip(hr), F.hflip(lr)
-        return hr, lr
+            result = []
+            for img in data:
+                result.append(F.hflip(img))
+            return result
+        return data
 
 class RandomVerticalFlip(object):
     """Vertically flip the given PIL Image randomly with a probability of 0.5."""
@@ -75,10 +80,12 @@ class RandomVerticalFlip(object):
         Returns:
             PIL Image: Randomly flipped image.
         """
-        hr, lr = data
         if random.random() < 0.5:
-            return F.vflip(hr), F.vflip(lr)
-        return hr, lr
+            result = []
+            for img in data:
+                result.append(F.vflip(img))
+            return result
+        return data
 
 class RandomCrop(object):
     """Crop the given PIL Image at a random location.
@@ -108,7 +115,7 @@ class RandomCrop(object):
         Returns:
             tuple: params (i, j, h, w) to be passed to ``crop`` for random crop.
         """
-        hr, lr = data
+        hr = data[0]
         w, h = hr.size
         th, tw = output_size
         if w == tw or h == th:
@@ -128,13 +135,14 @@ class RandomCrop(object):
         Returns:
             PIL Image: Cropped image.
         """
-        hr, lr = data
-        if self.padding > 0:
-            hr = F.pad(hr, self.padding)
-            lr = F.pad(lr, self.padding)
-
-        i, j, h, w = self.get_params(data, self.size)
-        return F.crop(hr, i, j, h, w), F.crop(lr, i, j, h, w)
+        result = []
+        for img in data:
+            if self.padding > 0:
+                img = F.pad(img, self.padding)
+            
+            i, j, h, w = self.get_params(data, self.size)
+            result.append(F.crop(img, i, j, h, w))
+        return result
 
 class ToTensor(object):
     """Convert a ``PIL Image`` or ``numpy.ndarray`` to tensor.
@@ -149,5 +157,7 @@ class ToTensor(object):
         Returns:
             Tensor: Converted image.
         """
-        hr, lr = data
-        return F.to_tensor(hr), F.to_tensor(lr)
+        result = []
+        for img in data:
+            result.append(F.to_tensor(img))
+        return result
