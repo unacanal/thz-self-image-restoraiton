@@ -58,7 +58,7 @@ def train(model, img, low_target, high_target, args, save_name):
             error1 = loss1(output, gt1)
             error2 = torch.sqrt(loss2(output, gt2))
 
-            error = error1 + args.lamb * error2
+            error = (1 - args.lamb) * error1 + args.lamb * error2
             cpu_loss = error.data.cpu().numpy().item()
 
             progress.set_description("Iteration: {iter} Loss: {loss}, Learning Rate: {lr}".format( \
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     save_name = '_'.join(img_name.split('_')[:-1]) + '_' + \
                     img_name.split('_')[-1].split('THz')[0] + \
                     '_to_' + low_target_name.split('_')[-1].split('THz')[0] + \
-                    'and' + high_target_name.split('_')[-1].split('THz')[0] + 'THz'
+                    'and' + high_target_name.split('_')[-1].split('THz')[0] + 'THz_lamb' + str(args.lamb)
     
     print(save_name)
     wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}')
