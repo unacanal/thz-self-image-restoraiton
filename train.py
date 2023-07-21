@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from net import ZSSRNet, CAIR
+from net import ZSSRNet, ZSN2N, CAIR
 from data import DataSampler
 import torch
 import torch.nn as nn
@@ -138,15 +138,21 @@ if __name__ == '__main__':
     num_channels = len(np.array(target).shape)
     print('num_channels:', num_channels)
     if num_channels == 3:
+        n_chan = num_channels
         if args.model == 'CAIR':
-            model = CAIR(img_channel=3, width=16, middle_blk_num=1, enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1])
+            model = CAIR(img_channel=n_chan, width=16, middle_blk_num=1, enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1])
+        elif args.model == 'ZSN2N':
+            model = ZSN2N(n_chan=n_chan)
         else:
-            model = ZSSRNet(input_channels = 3)
+            model = ZSSRNet(input_channels=n_chan)
     elif num_channels == 2:
+        n_chan = 1
         if args.model == 'CAIR':
-            model = CAIR(img_channel=1, width=16, middle_blk_num=1, enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1])
+            model = CAIR(img_channel=n_chan, width=16, middle_blk_num=1, enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1])
+        elif args.model == 'ZSN2N':
+            model = ZSN2N(n_chan=n_chan)
         else:
-            model = ZSSRNet(input_channels = 1)
+            model = ZSSRNet(input_channels=n_chan)
     else:
         print("Expecting RGB or gray image, instead got", target.size)
         sys.exit(1)
@@ -167,8 +173,8 @@ if __name__ == '__main__':
                     img_name.split('_')[-1].split('THz')[0] + \
                     '_to_' + target_name
     print(save_name)
-    wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}')
-    train(model, img, target, args, save_name)
+    wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}_{args.model}')
     os.makedirs(f'checkpoints/{args.model}_{args.exp}', exist_ok=True)
+    train(model, img, target, args, save_name)
     torch.save(model.state_dict(), os.path.join('checkpoints', f'{args.model}_{args.exp}', f'{save_name}_latest.pt'))
     test(model, target, save_name)
