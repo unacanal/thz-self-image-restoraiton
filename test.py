@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from net import ZSSRNet, CAIR
+from net import ZSSRNet, CAIR, ZSN2N
 import torch
 from torch.autograd import Variable
 import PIL
@@ -8,7 +8,7 @@ from torchvision import transforms
 import argparse
 
 
-def test(model, img, save_dir, save_name):
+def test(model, img, save_dir, save_name, args):
     model.eval()
 
     img = transforms.ToTensor()(img)
@@ -23,8 +23,14 @@ def test(model, img, save_dir, save_name):
     o[np.where(o > 1)] = 1.0
     output = torch.from_numpy(o)
     output = transforms.ToPILImage()(output)
-    os.makedirs(f'results/{save_dir}', exist_ok=True)
-    output.save(f'results/{save_dir}/{save_name}.png')
+    
+    if args.volt:
+        prefix = 'results_volt'
+    else:
+        prefix = 'results_main'
+        
+    os.makedirs(f'{prefix}/{save_dir}', exist_ok=True)
+    output.save(f'{prefix}/{save_dir}/{save_name}.png')
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -32,6 +38,7 @@ def get_args():
     parser.add_argument('--ckpt_path', type=str, help='Path to checkpoint')
     parser.add_argument('--save_dir', type=str, help='Dir to save result')
     parser.add_argument('--model', type=str, help='Model name')
+    parser.add_argument('--volt', type=str, default=None, help='Voltage' )
 
     args = parser.parse_args()
 
@@ -40,34 +47,38 @@ def get_args():
 
 if __name__ == '__main__':
     args = get_args()
-    
+        
     if args.model == 'CAIR':
-        model = CAIR(
-                    img_channel=1, width=16, middle_blk_num=1,
-                    enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1]
-                ).cuda()
+            model = CAIR(img_channel=1, width=16, middle_blk_num=1, enc_blk_nums=[1, 1, 1, 1], dec_blk_nums=[1, 1, 1, 1])
+    elif args.model == 'ZSN2N':
+        model = ZSN2N(n_chan=1)
     else:
-        model = ZSSRNet(input_channels=1).cuda()
+        model = ZSSRNet(input_channels=1)
+        
+    model.cuda()
 
     model.load_state_dict(torch.load(args.ckpt_path))
     if not args.test_img:
         # if args.test_img not exists
-        testset = np.arange(0.2, 1.2, 0.2)
-        testset2 = np.arange(1.2, 2.2, 0.2)
+        testset = np.arange(0.1, 1.5, 0.1)
+        testset2 = np.arange(1.4, 3.1, 0.1)
         testset = np.append(testset, testset2)
 
         for k in testset:
             k = round(k, 2)
-            test_img_path =  f'thz/resol1951_2_e_{k}THz.png'
-            print(test_img_path)
+            if args.volt:
+                test_img_path = f'hyperspectral/{args.volt}_30ps_e/{args.volt}_30ps_e_{k}THz.png'
+            else:
+                test_img_path =  f'hyperspectral/thz_new/resol1951_2_e_{k}THz.png'
 
             test_img = PIL.Image.open(test_img_path)
 
             test_img_name = os.path.splitext(os.path.basename(test_img_path))[0]
             save_name = test_img_name + \
-                '('+''.join(os.path.splitext(os.path.basename(args.ckpt_path))[0].split('_')[-3:]).split('THz')[0]+')'
-                
-            test(model, test_img, args.save_dir, save_name)
+                '('+''.join(os.path.splitext(os.path.basename(args.ckpt_path))[0].split('_')[-4:]).split('THz')[0]+')'
+            
+            save_dir = os.path.join(args.save_dir, str(k))
+            test(model, test_img, save_dir, save_name, args)
 
     else:
         test_img = PIL.Image.open(args.test_img)
@@ -75,5 +86,8 @@ if __name__ == '__main__':
         test_img_name = os.path.splitext(os.path.basename(args.test_img))[0]
         save_name = test_img_name + \
             '('+ os.path.basename(args.ckpt_path).split('THz')[0] + ')'
-            
+        
+        if os.path.basename(args.ckpt_path).split('_')[-2][:4] == 'lamb':
+            save_name += os.path.basename(args.ckpt_path).split('_')[-2]
+
         test(model, test_img, args.save_dir, save_name)
