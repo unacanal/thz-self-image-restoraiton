@@ -34,7 +34,7 @@ def adjust_learning_rate(optimizer, new_lr):
         param_group['lr'] = new_lr
 
 
-def train(model, img, target, args, save_name):
+def train(model, img, target, args, save_name, ckpt_dir):
     num_batches = args.num_batches
     learning_rate = args.lr
     crop_size = args.crop
@@ -71,7 +71,7 @@ def train(model, img, target, args, save_name):
             
             if cpu_loss < best_loss:
                 best_loss = cpu_loss
-                torch.save(model.state_dict(), os.path.join('checkpoints', f'{args.model}_{args.exp}', f'{save_name}_best.pt'))
+                torch.save(model.state_dict(), os.path.join(ckpt_dir, f'{args.model}_{args.exp}', f'{save_name}_best.pt'))
 
             error.backward()
             optimizer.step()
@@ -115,6 +115,7 @@ def get_args():
     parser.add_argument('--test_img', type=str, help='Path to test img')
     parser.add_argument('--model', type=str, default='ZSSR', help='Model name')
     parser.add_argument('--exp', type=str, default='o2o', help='Experiment name')
+    parser.add_argument('--volt', type=str, default=None, help='Voltage')
 
     args = parser.parse_args()
 
@@ -174,7 +175,13 @@ if __name__ == '__main__':
                     '_to_' + target_name
     print(save_name)
     wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}_{args.model}')
-    os.makedirs(f'checkpoints/{args.model}_{args.exp}', exist_ok=True)
-    train(model, img, target, args, save_name)
-    torch.save(model.state_dict(), os.path.join('checkpoints', f'{args.model}_{args.exp}', f'{save_name}_latest.pt'))
+    
+    if args.volt:
+        ckpt_dir = 'checkpoints_volt'
+    else:
+        ckpt_dir = 'checkpoints'
+
+    os.makedirs(f'{ckpt_dir}/{args.model}_{args.exp}', exist_ok=True)
+    train(model, img, target, args, save_name, ckpt_dir)
+    torch.save(model.state_dict(), os.path.join(ckpt_dir, f'{args.model}_{args.exp}', f'{save_name}_latest.pt'))
     test(model, target, save_name)
