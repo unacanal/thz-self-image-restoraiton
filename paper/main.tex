@@ -1,0 +1,96 @@
+\documentclass[lettersize,journal]{IEEEtran}
+\usepackage{amsmath,amsfonts}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{array}
+% \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{svg}
+\usepackage{cite}
+\usepackage{kotex}
+\usepackage{booktabs} % For better looking tables
+\usepackage{caption} % For customising the captions
+\usepackage{subcaption}
+\usepackage{siunitx} % For alignment of numbers on decimal point
+\usepackage{xcolor}
+\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+% updated with editorial comments 8/9/2021
+
+
+% MACROS
+\newcommand\ie{\textit{i.e.}}
+\newcommand\eg{\textit{e.g.}}
+
+\begin{document}
+
+\title{Overcoming the Diffraction Limit: Self-Supervised Image Restoration using Terahertz Self-Aligned Hyperspectral Images}
+
+\author{Woon-Ha Yeo, Seung-Hwan Jung, Inhee Maeng, Youngbin Ji, Seung Jae Oh*\thanks{* Corresponding author.}, and Han-Cheol Ryu*
+        % <-this % stops a space
+\thanks{This paper was produced by the IEEE Publication Technology Group. They are in Piscataway, NJ.}% <-this % stops a space
+\thanks{Manuscript received April 19, 2023; revised August 16, 2023.}}
+
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2023}%
+{Shell \MakeLowercase{\textit{et al.}}: A Sample Article Using IEEEtran.cls for IEEE Journals}
+
+\IEEEpubid{0000--0000/00\$00.00~\copyright~2023 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+\maketitle
+
+\begin{abstract}
+This study proposes a novel self-supervised deep learning image restoration method to overcome the diffraction limit of terahertz (THz) imaging using a terahertz time-domain spectroscopy (THz-TDS) system. Our proposed method employs self-supervised learning using self-aligned hyperspectral (SAHS) data obtained through the THz-TDS system, without additional training datasets, thereby overcoming the diffraction limit of THz waves and enhancing image quality. The key to this learning method is that it can learn from the frequency characteristics of THz SAHS images without the need for artificial image degradation typically used in conventional image restoration learning. This paper presents a framework for self-supervised learning based on THz SAHS images, which includes one-to-one frequency mapping, recurrent learning, and zero-shot super-resolution. Experimental results demonstrate that the proposed method significantly improves the clarity of THz images by overcoming the diffraction limit in low-frequency regions and effectively reduces noise in high-frequency regions. These results are expected to enhance the image quality of various THz imaging systems by overcoming the THz wave’s diffraction limit and generating high-resolution images.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Deep learning, self-supervised learning, terahertz self-aligned hyperspectral images, terahertz time-domain spectroscopy, image restoration
+\end{IEEEkeywords}
+
+\input{01_Introduction}
+\input{02_RelatedWorks}
+\input{03_Method}
+\input{04_Experiments}
+\input{05_Conclusion}
+
+\section*{Acknowledgements}
+This work was supported by the Basic Science Research Program through the National Research Foundation (NRF) funded by the Ministry of Science and ICT (grant no. NRF-2021R1F1A1059493) and Institute of Information \& Communications Technology Planning \& Evaluation (IITP) grant, funded by the Korea government (MSIT) (Grant No. 2022-0-01044, Development of terahertz wave-based real-time intelligent brain tumor diagnosis system and technology).
+
+\bibliographystyle{IEEEtran}
+\bibliography{egbib}
+
+% ========== Biography ============ %
+\vspace{-10mm}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{biography/yeo}}]{Woon-Ha Yeo}
+received her B.Eng. and M.Eng. in IT Engineering from Sookmyung Women's University, South Korea, in 2019 and 2021. She is currently a Ph.D. student at Sahmyook University and a researcher affiliated to TAIIPA, South Korea. Her research interests include deep learning, computer vision and terahertz image processing.
+\end{IEEEbiography}
+\vspace{-10mm}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{biography/jung}}]{Seung-Hwan Jung}
+received his B.Eng. in IT Convergence Engineering from Sahmyook University, South Korea, in 2023. He is currently a Ph.D. student at Sahmyook University and researcher affiliated to TAIIPA, South Korea, His research interests include deep learning, computer vision and terahertz signal and image denoising.
+\end{IEEEbiography}
+\vspace{-10mm}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{biography/maeng}}]{Inhee Maeng}
+is currently a research assistant professor at the YUHS-KRIBB, Medical Convergence Research Institute, Yonsei University. She received her Ph.D. from the Department of Physics at University of Seoul under the supervision of Professor Joo-Huik Son in 2012. Her research interests focus on the design and construction of various terahertz systems and their applications using emerging materials. In particular, she focuses on organic–inorganic hybrid perovskite materials for THz sensors.
+\end{IEEEbiography}
+\vspace{-10mm}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{biography/ji}}]{Youngbin Ji}
+(Member, IEEE) was born in Busan, Republic of Korea, in 1980. He received the B.S. degree, M.S. degree and Ph.D. degree in electrical and electronic engineering from the Korea Maritime University, Busan, Republic of Korea, in 2006, 2008, and 2013, respectively. From 2013 to 2015, a Postdoctoral Fellow at the Yonsei University, Seoul, Republic of Korea. From 2015 to 2017, he was a Research assistant professor at the Yonsei University College of Medicine, Seoul, Republic of Korea. From 2017 to 2023, he was a senior researcher at the Gimhae Biomedical Industry Promotion Agency, Gyeongsangnam-do, Republic of Korea. He is currently a research associate professor at the Gwangju Institute of Science and Technology, Gwangju, Republic of Korea. His research has been concerned with medical and industrial application research using terahertz waves.
+\end{IEEEbiography}
+\vspace{-10mm}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{biography/oh}}]{Seung Jae Oh}
+received his B.S., M.S. and Ph.D. degrees in physics from the University of Seoul in 2000, 2002 and 2007, respectively. He was a post-doctoral research fellow at College of Medicine, Yonsei Univertisy since 2007 to 2009. In 2009, he was a research fellow at Department of Radiology, Yonsei University. He has been with YUHS-KRIBB Medical Convergence Research Institute, Yonsei University as a research assistant professor from 2010 to 2020 and research associate professor since 2020. His research interest is in the area of biomedical optics imaging that includes terahertz wave imaging and ultrafast laser biomedical application.
+\end{IEEEbiography}
+\vspace{-10mm}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{biography/ryu}}]{Han-Cheol Ryu}
+received a Ph.D. in electronic engineering from KAIST (Korea Advanced Institute of Science and Technology), Korea 2011. From 2002 to 2013, he worked as a senior researcher at ETRI (Electronics and Telecommunications Research Institute) in Korea. Since 2013, he has been a professor at Sahmyook University in Seoul, Korea. His research interests include artificial intelligence (machine learning and deep learning), microwave and terahertz-wave technology, and their applications in wireless communications, sensing, and imaging systems. In particular, he is focusing on research that applies deep learning techniques to terahertz imaging technology.
+\end{IEEEbiography}
+\vfill
+
+\end{document}

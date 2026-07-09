@@ -1,4 +1,39 @@
+# Python
 __pycache__
+*.pyc
+*.pyo
+
+# Data / experiment outputs (local only)
 thz/*
 checkpoints*
 results*
+wandb/
+denoised/
+*.onnx
+
+# Third-party BRISQUE library (not used in the paper)
+IQA/BRISQUE/
+
+# IQA result artifacts / temp dirs (keep only scripts & notebooks)
+IQA/images/
+IQA/temp/
+IQA/temp2/
+IQA/*.csv
+IQA/*.log
+*~
+
+# Non-paper experiment code (kept locally, excluded from GitHub)
+diffusion/
+train_band.py
+train_two_target.py
+ensemble.py
+ensemble.ipynb
+ensemble.sh
+convert_onnx.py
+train_2V.sh
+train_10V.sh
+train_20V.sh
+train_40V.sh
+train_60V.sh
+train_80V.sh
+train_100V.sh

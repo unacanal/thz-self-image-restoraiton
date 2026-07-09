@@ -1,0 +1,1043 @@
+@article{Lei2021,
+   abstract = {The low image acquisition speed of terahertz (THz) time-domain imaging systems limits their application in biological products analysis. In the current study, a local pixel graph neural network was built for THz time-domain imaging super-resolution. The method could be applied to the analysis of any heterogeneous biological products as it only required a small number of sample images for training and particularly it focused on THz feature frequencies. The graph network applied the Fourier transform to graphs extracted from low-resolution (LR) images bringing an invariance of rotation and flip for local pixels, and the network then learnt the relationship between the state of graphs and the corresponding pixels to be reconstructed. With wood cores and seeds as examples, the images of these samples were captured by a THz time-domain imaging system for training and analysed by the method, achieving the root mean square error (RMSE) of pixels of 0.0957 and 0.1061 for the wood core and seed images, respectively. In addition, the reconstructed high-resolution (HR) images, LR images and true HR images at several feature frequencies were also compared in the current study. Results indicated that the method could not only reconstruct the spatial details and the useful signals from high noise signals at high feature frequencies but could also operate super-resolution in both spatial and spectral aspects.},
+   author = {Tong Lei and Brian Tobin and Zihan Liu and Shu Yi Yang and Da Wen Sun},
+   doi = {10.1016/j.aca.2021.338898},
+   issn = {18734324},
+   journal = {Analytica Chimica Acta},
+   keywords = {Graph embedding,Neural network,Super-resolution,THz time-domain imaging},
+   month = {10},
+   pmid = {34556238},
+   publisher = {Elsevier B.V.},
+   title = {A terahertz time-domain super-resolution imaging method using a local-pixel graph neural network for biological products},
+   volume = {1181},
+   year = {2021},
+}
+@article{Ruan2022,
+   abstract = {Terahertz waves are electromagnetic waves located at 0.1–10 THz, and terahertz imaging technology can be applied to security inspection, biomedicine, non-destructive testing of materials, and other fields. At present, terahertz images have unclear data and rough edges. Therefore, improving the resolution of terahertz images is one of the current hot research topics. This paper proposes an efficient terahertz image super-resolution model, which is used to extract low-resolution (LR) image features and learn the mapping of LR images to high-resolution (HR) images, and then introduce an attention mechanism to let the network pay attention to more information features. Finally, we use sub-pixel convolution to learn a set of scaling filters to upgrade the final LR feature map to an HR output, which not only reduces the model complexity, but also improves the quality of the terahertz image. The resolution reaches 31.67 db on the peak signal-to-noise ratio (PSNR) index and 0.86 on the structural similarity (SSIM) index. Experiments show that the efficient sub-pixel convolutional neural network used in this article achieves better accuracy and visual improvement compared with other terahertz image super-resolution algorithms.},
+   author = {Haihang Ruan and Zhiyong Tan and Liangtao Chen and Wenjain Wan and Juncheng Cao},
+   doi = {10.1364/ol.454267},
+   issn = {0146-9592},
+   issue = {12},
+   journal = {Optics Letters},
+   month = {6},
+   note = {PixelShuffle이랑 Channel attention 그대로 가져다 쓰고 그 내용 리뷰한 수준의 내용으로 채워져있음.<br/><br/>흥미로운 점은 다른 논문과는 달리 validation image를 직접 tera 장비로 측정해서 PSNR과 SSIM 값까지 비교했다는 것. 어떻게 했는지는 THz 관련된 내용이라서 잘 모르겠지만 대충 <br/><br/>- THz array detector의 효율적인 픽셀 수는 384x288<br/>- encapsualted chip periphery를 실시간 이미징 함. clear image를 뽑는데 이 때 red(가장 약한 신호), blue(가장 강한 신호), 나머지는 그 두 색의 사이로 표현.<br/>},
+   pages = {3115},
+   pmid = {35709064},
+   publisher = {Optica Publishing Group},
+   title = {Efficient sub-pixel convolutional neural network for terahertz image super-resolution},
+   volume = {47},
+   year = {2022},
+}
+@article{Wang2022,
+   abstract = {To deal with a terahertz (THz) super-resolution (SR) algorithm based on a convolutional neural network (CNN) without standard training datasets, a complex “zero-shot” SR (CZSSR) reconstruction algorithm is proposed according to the internal image statistics with a five-layer complex CNN model. Instead of relying on pre-training, the proposed method is of sound self-adaptability. Compared with real ZSSR, the peak SNR of CZSSR rose by about 0.94 dB, MSE decreased by 0.042, and SSIM increased by about 40% for the SR result of the measured data. The results show that the CZSSR method can solve the low-resolution problem of a THz imaging system and the shortage of datasets in THz SR based on CNN. Therefore, this research is of great significance for application in the fields of medical imaging and non-destructive detection.},
+   author = {Ying Wang and Feng Qi and Jinkuan Wang},
+   doi = {10.1364/ao.463123},
+   issn = {1559-128X},
+   issue = {20},
+   journal = {Applied Optics},
+   month = {7},
+   pages = {5831},
+   pmid = {36255819},
+   publisher = {Optica Publishing Group},
+   title = {Complex “zero-shot” super-resolution reconstruction algorithm for THz imaging},
+   volume = {61},
+   year = {2022},
+}
+@inproceedings{An2022,
+   abstract = {Terahertz imaging technology has been widely used in applications of security detection, defect detection and biomedicine. The in- sufficient resolution is still the main defect of this technology so far. The use of deep neural network for super-resolution reconstruction of image is a mainstream enhancement of resolution methods. Aiming at solving the shortcomings of existing methods to obtaining training sets and the design of networks, this paper proposes to use real- world terahertz images as low-resolution images and real-world optical images as ground truth to organize unpaired training sets, also a cycle adversarial super-resolution network is designed for the characteristics of unpaired training sets and different picture styles. In this paper we trained the network using training sets organized with the terahertz images which was collected through the Internet, and the images suitable for training in the Office-Home Datasets. The obtained results with real terahertz images shown that through the proposed network the resolution of terahertz images improved, which proves the feasibility of this network.},
+   author = {Hongyu An and Li He and Zhongwei Hou and Dakun Lai},
+   doi = {10.1109/PRML56267.2022.9882221},
+   isbn = {9781665499507},
+   journal = {2022 3rd International Conference on Pattern Recognition and Machine Learning, PRML 2022},
+   keywords = {Terahertz imaging,cycle generative adversarial networks,deep neural networks,image degradation,super-resolution reconstruction},
+   pages = {193-198},
+   publisher = {Institute of Electrical and Electronics Engineers Inc.},
+   title = {Terahertz Image Super-Resolution Reconstruction Using Unpaired Real-World Images},
+   year = {2022},
+}
+@article{Ning2019,
+   abstract = {Nowadays, terahertz (THz) imaging is quite promising in scientific and biomedical applications. However, the much longer wavelength degrades the resolution of obtained images compared with classical imaging at optical frequencies. Imaging is considered to be a convolution process between the object function and point spread function (PSF) of the system. Thus, how to describe the object accurately from a blurred image is an inverse problem. In this paper, we demonstrate how well such a method can function. We would illustrate how to make current facilities overcome the physical limitations in imaging, which can image at the sub-spot level. Periodical stripes with a period of 0.8 mm are resolved at 0.3 THz. The resolution is 0.32 times the physical size of the focused beam. Moreover, this method is extended to the mathematical operations in a complex domain, which is distinct from previous image studies via visible/IR light. Physically, it means that we essentially deal with phase by making use of the wave nature of THz light. For the first time, it is demonstrated that the reconstructed phase can also describe the shape of the object by applying such an approach. In addition, we have successfully measured the diameter of human hair with a relative error of less than 10% at 3 THz. As an example, we did an experiment on tissues of colorectal cancer and a better image is obtained, which would be helpful for medical diagnosis. We believe that such an approach is able to improve imaging performance at THz frequencies and many applications will gain from it.},
+   author = {Wei Ning and Feng Qi and Zhaoyang Liu and Yelong Wang and Hongming Wu and Jinkuan Wang},
+   doi = {10.1109/ACCESS.2019.2917531},
+   issn = {21693536},
+   journal = {IEEE Access},
+   keywords = {THz imaging,deconvolution,medical diagnosis,phase operation},
+   pages = {65116-65121},
+   publisher = {Institute of Electrical and Electronics Engineers Inc.},
+   title = {Resolution enhancement in terahertz imaging via deconvolution},
+   volume = {7},
+   year = {2019},
+}
+@article{Li2020,
+   abstract = {During the real-aperture-scanning imaging process, terahertz (THz) images are often plagued with the problem of low spatial resolution. Therefore, an accommodative super-resolution framework for THz images is proposed. Specifically, the 3D degradation model for the imaging system is firstly proposed by incorporating the focused THz beam distribution, which determines the relationship between the imaging range and the corresponding image restoration level. Secondly, an adjustable CNN is introduced to cope with this range dependent super-resolution problem. By simply tuning an interpolation parameter, the network can be adjusted to produce arbitrary restoration levels between the trained fixed levels without extra training. Finally, by selecting the appropriate interpolation coefficient according to the measured imaging range, each THz image can be coped with its matched network and reach the outstanding super-resolution effect. Both the simulated and real tested data, acquired by a 160 ∼ 220 GHz imager, have been used to demonstrate the superiority of our method.},
+   author = {Yade Li and Weidong Hu and Xin Zhang and Zhihao Xu and Jiaqi Ni and Leo P. Ligthart},
+   doi = {10.1364/oe.394943},
+   issn = {10944087},
+   issue = {15},
+   journal = {Optics Express},
+   month = {7},
+   pages = {22200},
+   pmid = {32752486},
+   publisher = {The Optical Society},
+   title = {Adaptive terahertz image super-resolution with adjustable convolutional neural network},
+   volume = {28},
+   year = {2020},
+}
+@article{Wang2021,
+   abstract = {Terahertz (THz) imaging has been applied successfully in numerous applications, from medical imaging to industrial non-destructive detection. However, low resolution has always been a problem due to its long wavelength. A convolution neural network (CNN) is quite effective at improving the resolution of images in optics, in which real numbers are manipulated corresponding to measured intensity. Compared to optics, it is quite feasible to gain both the amplitude and phase information in THz imaging. In this Letter, we have extended the CNN from a real number domain to a complex number domain based on the wave nature of THz light. To the best of our knowledge, this is the first time that such a complex convolution neural network (CCNN) has been shown to be successful in THz imaging. We have proved that resolution can be 0.4 times of the beam size via this approach, and half a wavelength resolution can be obtained easily. Compared to the CNN, the CCNN generates an extra 27.8% increase in terms of contrast, implying a better image. Phase information can be recovered well, which is impossible for the CNN. Although the network is trained by the MNIST dataset, it is quite powerful for image reconstruction. Again, the CCNN outperforms the CNN in terms of generalization capability. We believe such an approach can help to overcome the lower-resolution bottleneck in THz imaging, and it can release the requirement of critical optical components and extensive fine-tuning in systems. THz biomedical imaging, non-destructive testing (NDT), and a lot of imaging applications can benefit from this approach.},
+   author = {Ying Wang and Feng Qi and Jinkuan Wang},
+   doi = {10.1364/ol.422684},
+   issn = {0146-9592},
+   issue = {13},
+   journal = {Optics Letters},
+   month = {7},
+   pages = {3123},
+   pmid = {34197396},
+   publisher = {The Optical Society},
+   title = {Terahertz image super-resolution based on a complex convolutional neural network},
+   volume = {46},
+   year = {2021},
+}
+@article{Long2019,
+   abstract = {We propose an effective and robust method for terahertz (THz) image super-resolution based on a deep convolutional neural network (CNN). A deep CNN model is designed. It learns an end-to-end mapping between the low- and high-resolution images. Blur kernels with multiple width and noise with multiple levels are taken into the training set so that the network can handle THz images very well. Quantitative comparison of the proposed method and other super-resolution methods on the synthetic THz images indicates that the proposed method performs better than other methods in accuracy and visual improvements. Experimental results on real THz images show that the proposed method significantly improves the quality of THz images with increased resolution and decreased noise, which proves the practicability and exactitude of the proposed method.},
+   author = {Zhenyu Long and Tianyi Wang and ChengWu You and Zhengang Yang and Kejia Wang and Jinsong Liu},
+   doi = {10.1364/ao.58.002731},
+   issn = {1559-128X},
+   issue = {10},
+   journal = {Applied Optics},
+   month = {4},
+   pages = {2731},
+   pmid = {31045074},
+   publisher = {The Optical Society},
+   title = {Terahertz image super-resolution based on a deep convolutional neural network},
+   volume = {58},
+   year = {2019},
+}
+
+@article{thz_imaging1,
+  title={Recent advances in terahertz imaging},
+  author={Mittleman, DM and Gupta, M and Neelamani, Ramesh and Baraniuk, RG and Rudd, JV and Koch, M},
+  journal={Applied Physics B},
+  volume={68},
+  pages={1085--1094},
+  year={1999},
+  publisher={Springer}
+}
+@article{thz_imaging2,
+  title={Terahertz imaging: applications and perspectives},
+  author={Jansen, Christian and Wietzke, Steffen and Peters, Ole and Scheller, Maik and Vieweg, Nico and Salhi, Mohammed and Krumbholz, Norman and J{\"o}rdens, Christian and Hochrein, Thomas and Koch, Martin},
+  journal={Applied optics},
+  volume={49},
+  number={19},
+  pages={E48--E57},
+  year={2010},
+  publisher={Optica Publishing Group}
+}
+@article{thz_imaging3,
+  title={Twenty years of terahertz imaging},
+  author={Mittleman, Daniel M},
+  journal={Optics express},
+  volume={26},
+  number={8},
+  pages={9417--9431},
+  year={2018},
+  publisher={Optica Publishing Group}
+}
+@article{thz_imaging4,
+  title={Recent advances in terahertz imaging: 1999 to 2021},
+  author={Castro-Camus, Enrique and Koch, Martin and Mittleman, Daniel M},
+  journal={Applied Physics B},
+  volume={128},
+  number={1},
+  pages={12},
+  year={2022},
+  publisher={Springer}
+}
+
+@article{kawase2003nondest,
+  title={Non-destructive terahertz imaging of illicit drugs using spectral fingerprints},
+  author={Kawase, Kodo and Ogawa, Yuichi and Watanabe, Yuuki and Inoue, Hiroyuki},
+  journal={Optics express},
+  volume={11},
+  number={20},
+  pages={2549--2554},
+  year={2003},
+  publisher={Optica Publishing Group}
+}
+@book{fukunaga2016thz,
+  title={THz technology applied to cultural heritage in practice},
+  author={Fukunaga, Kaori},
+  year={2016},
+  publisher={Springer}
+}
+@article{spies2020terahertz,
+  title={Terahertz spectroscopy of emerging materials},
+  author={Spies, Jacob A and Neu, Jens and Tayvah, Uriel T and Capobianco, Matt D and Pattengale, Brian and Ostresh, Sarah and Schmuttenmaer, Charles A},
+  journal={The Journal of Physical Chemistry C},
+  volume={124},
+  number={41},
+  pages={22335--22346},
+  year={2020},
+  publisher={ACS Publications}
+}
+@article{bowman2018pulsed,
+  title={Pulsed terahertz imaging of breast cancer in freshly excised murine tumors},
+  author={Bowman, Tyler and Chavez, Tanny and Khan, Kamrul and Wu, Jingxian and Chakraborty, Avishek and Rajaram, Narasimhan and Bailey, Keith and El-Shenawee, Magda},
+  journal={Journal of biomedical optics},
+  volume={23},
+  number={2},
+  pages={026004--026004},
+  year={2018},
+  publisher={Society of Photo-Optical Instrumentation Engineers}
+}
+@inproceedings{shocher2018zssr,
+  title={“zero-shot” super-resolution using deep internal learning},
+  author={Shocher, Assaf and Cohen, Nadav and Irani, Michal},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={3118--3126},
+  year={2018}
+}
+@article{mittal2012brisque,
+  title={No-reference image quality assessment in the spatial domain},
+  author={Mittal, Anish and Moorthy, Anush Krishna and Bovik, Alan Conrad},
+  journal={IEEE Transactions on image processing},
+  volume={21},
+  number={12},
+  pages={4695--4708},
+  year={2012},
+  publisher={IEEE}
+}
+
+% Noise Level Estimation
+@inproceedings{chen2015noiselevel,
+  title={An efficient statistical method for image noise level estimation},
+  author={Chen, Guangyong and Zhu, Fengyuan and Ann Heng, Pheng},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
+  pages={477--485},
+  year={2015},
+  url={https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Chen_An_Efficient_Statistical_ICCV_2015_paper.pdf}
+}
+
+@article{paszke2019pytorch,
+  title={Pytorch: An imperative style, high-performance deep learning library},
+  author={Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and others},
+  journal={Advances in neural information processing systems},
+  volume={32},
+  year={2019}
+}
+@article{kingma2014adam,
+  title={Adam: A method for stochastic optimization},
+  author={Kingma, Diederik P and Ba, Jimmy},
+  journal={arXiv preprint arXiv:1412.6980},
+  year={2014}
+}
+
+@article{wong2019computational,
+  title={Computational image enhancement for frequency modulated continuous wave (FMCW) THz image},
+  author={Wong, Tak Ming and Kahl, Matthias and Haring Bol{\'\i}var, Peter and Kolb, Andreas},
+  journal={Journal of Infrared, Millimeter, and Terahertz Waves},
+  volume={40},
+  pages={775--800},
+  year={2019},
+  publisher={Springer}
+}
+@article{peli1990contrast,
+  title={Contrast in complex images},
+  author={Peli, Eli},
+  journal={JOSA A},
+  volume={7},
+  number={10},
+  pages={2032--2040},
+  year={1990},
+  publisher={Optica Publishing Group}
+}
+
+% Spatial Resolution ---
+@article{rayleigh1879xxxi,
+  title={XXXI. Investigations in optics, with special reference to the spectroscope},
+  author={Rayleigh},
+  journal={The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science},
+  volume={8},
+  number={49},
+  pages={261--274},
+  year={1879},
+  publisher={Taylor \& Francis}
+}
+@article{chernomyrdin2017wide,
+  title={Wide-aperture aspherical lens for high-resolution terahertz imaging},
+  author={Chernomyrdin, Nikita V and Frolov, Maxim E and Lebedev, Sergey P and Reshetov, Igor V and Spektor, Igor E and Tolstoguzov, Viktor L and Karasik, Valeriy E and Khorokhorov, Alexei M and Koshelev, Kirill I and Schadko, Aleksander O and others},
+  journal={Review of Scientific Instruments},
+  volume={88},
+  number={1},
+  year={2017},
+  publisher={AIP Publishing}
+}
+@article{nguyen2017enhancement,
+  title={Enhancement of spatial resolution of terahertz imaging systems based on terajet generation by dielectric cube},
+  author={Nguyen Pham, Hai Huy and Hisatake, Shintaro and Minin, Oleg Vladilenovich and Nagatsuma, Tadao and Minin, Igor Vladilenovich},
+  journal={Apl Photonics},
+  volume={2},
+  number={5},
+  year={2017},
+  publisher={AIP Publishing}
+}
+% ---
+
+% ----- Related Works----- %
+@inproceedings{anTerahertzImageSuperResolution2022,
+  title = {Terahertz {{Image Super-Resolution Reconstruction Using Unpaired Real-World Images}}},
+  booktitle = {2022 3rd {{International Conference}} on {{Pattern Recognition}} and {{Machine Learning}} ({{PRML}})},
+  author = {An, Hongyu and He, Li and Hou, Zhongwei and Lai, Dakun},
+  year = {2022},
+  month = jul,
+  pages = {193--198},
+  publisher = {{IEEE}},
+  address = {{Chengdu, China}},
+  doi = {10.1109/PRML56267.2022.9882221},
+  urldate = {2023-10-02},
+  abstract = {Terahertz imaging technology has been widely used in applications of security detection, defect detection and biomedicine. The in- sufficient resolution is still the main defect of this technology so far. The use of deep neural network for super-resolution reconstruction of image is a mainstream enhancement of resolution methods. Aiming at solving the shortcomings of existing methods to obtaining training sets and the design of networks, this paper proposes to use real- world terahertz images as low-resolution images and real-world optical images as ground truth to organize unpaired training sets, also a cycle adversarial super-resolution network is designed for the characteristics of unpaired training sets and different picture styles. In this paper we trained the network using training sets organized with the terahertz images which was collected through the Internet, and the images suitable for training in the OfficeHome Datasets. The obtained results with real terahertz images shown that through the proposed network the resolution of terahertz images improved, which proves the feasibility of this network.},
+  isbn = {978-1-66549-950-7},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\4VYPADLD\An et al. - 2022 - Terahertz Image Super-Resolution Reconstruction Us.pdf}
+}
+
+@article{chanImagingTerahertzRadiation2007,
+  title = {Imaging with Terahertz Radiation},
+  author = {Chan, Wai Lam and Deibel, Jason and Mittleman, Daniel M},
+  year = {2007},
+  month = aug,
+  journal = {Reports on Progress in Physics},
+  volume = {70},
+  number = {8},
+  pages = {1325--1379},
+  issn = {0034-4885, 1361-6633},
+  doi = {10.1088/0034-4885/70/8/R02},
+  urldate = {2023-10-02},
+  abstract = {Within the last several years, the field of terahertz science and technology has changed dramatically. Many new advances in the technology for generation, manipulation, and detection of terahertz radiation have revolutionized the field. Much of this interest has been inspired by the promise of valuable new applications for terahertz imaging and sensing. Among a long list of proposed uses, one finds compelling needs such as security screening and quality control, as well as whimsical notions such as counting the almonds in a bar of chocolate. This list has grown in parallel with the development of new technologies and new paradigms for imaging and sensing. Many of these proposed applications exploit the unique capabilities of terahertz radiation to penetrate common packaging materials and provide spectroscopic information about the materials within. Several of the techniques used for terahertz imaging have been borrowed from other, more well established fields such as x-ray computed tomography and synthetic aperture radar. Others have been developed exclusively for the terahertz field, and have no analogies in other portions of the spectrum. This review provides a comprehensive description of the various techniques which have been employed for terahertz image formation, as well as discussing numerous examples which illustrate the many exciting potential uses for these emerging technologies.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\4GQ77QFS\Chan et al. - 2007 - Imaging with terahertz radiation.pdf}
+}
+
+@article{huTerahertzSuperResolutionNondestructive2023,
+  title = {Terahertz {{Super-Resolution Nondestructive Detection Algorithm Based}} on {{Edge Feature Convolution Network}}},
+  author = {Hu, Cong and Quan, Hui and Wu, Xiangdong and Li, Ting and Zhou, Tian},
+  year = {2023},
+  journal = {IEEE Access},
+  volume = {11},
+  pages = {2721--2728},
+  issn = {2169-3536},
+  doi = {10.1109/ACCESS.2022.3184029},
+  urldate = {2023-10-02},
+  abstract = {Much research has been conducted to improve the defect-detection rate and detection accuracy of the imaging technology used in terahertz nondestructive testing. Due to the power limit of light sources and noise interference in terahertz equipment, images have low resolution and fuzzy defect edges. Hence, improving the resolution is crucial for detecting defects. We designed an edge detection network structure based on a traditional deep neural network. Besides, we devised a node-fusing strategy to train the network. It demonstrates significant improvement of the resolution of the terahertz defect contour. A quartz fiber composites with embedded defects was tested with our network. The results showed that the proposed super-resolution reconstruction algorithm improves resolution, particularly on the edges of defect contours.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\4CA62AZX\Hu et al. - 2023 - Terahertz Super-Resolution Nondestructive Detectio.pdf}
+}
+
+@article{leiTerahertzTimedomainSuperresolution2021,
+  title = {A Terahertz Time-Domain Super-Resolution Imaging Method Using a Local-Pixel Graph Neural Network for Biological Products},
+  author = {Lei, Tong and Tobin, Brian and Liu, Zihan and Yang, Shu-Yi and Sun, Da-Wen},
+  year = {2021},
+  month = oct,
+  journal = {Analytica Chimica Acta},
+  volume = {1181},
+  pages = {338898},
+  issn = {00032670},
+  doi = {10.1016/j.aca.2021.338898},
+  urldate = {2023-10-02},
+  abstract = {The low image acquisition speed of terahertz (THz) time-domain imaging systems limits their application in biological products analysis. In the current study, a local pixel graph neural network was built for THz time-domain imaging super-resolution. The method could be applied to the analysis of any heterogeneous biological products as it only required a small number of sample images for training and particularly it focused on THz feature frequencies. The graph network applied the Fourier transform to graphs extracted from low-resolution (LR) images bringing an invariance of rotation and flip for local pixels, and the network then learnt the relationship between the state of graphs and the corresponding pixels to be reconstructed. With wood cores and seeds as examples, the images of these samples were captured by a THz time-domain imaging system for training and analysed by the method, achieving the root mean square error (RMSE) of pixels of 0.0957 and 0.1061 for the wood core and seed images, respectively. In addition, the reconstructed high-resolution (HR) images, LR images and true HR images at several feature frequencies were also compared in the current study. Results indicated that the method could not only reconstruct the spatial details and the useful signals from high noise signals at high feature frequencies but could also operate super-resolution in both spatial and spectral aspects.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\6867JCPF\Lei et al. - 2021 - A terahertz time-domain super-resolution imaging m.pdf}
+}
+
+@article{liAdaptiveTerahertzImage2020,
+  title = {Adaptive Terahertz Image Super-Resolution with Adjustable Convolutional Neural Network},
+  author = {Li, Yade and Hu, Weidong and Zhang, Xin and Xu, Zhihao and Ni, Jiaqi and Ligthart, Leo P.},
+  year = {2020},
+  month = jul,
+  journal = {Optics Express},
+  volume = {28},
+  number = {15},
+  pages = {22200},
+  issn = {1094-4087},
+  doi = {10.1364/OE.394943},
+  urldate = {2023-10-02},
+  abstract = {During the real-aperture-scanning imaging process, terahertz (THz) images are often plagued with the problem of low spatial resolution. Therefore, an accommodative super-resolution framework for THz images is proposed. Specifically, the 3D degradation model for the imaging system is firstly proposed by incorporating the focused THz beam distribution, which determines the relationship between the imaging range and the corresponding image restoration level. Secondly, an adjustable CNN is introduced to cope with this range dependent super-resolution problem. By simply tuning an interpolation parameter, the network can be adjusted to produce arbitrary restoration levels between the trained fixed levels without extra training. Finally, by selecting the appropriate interpolation coefficient according to the measured imaging range, each THz image can be coped with its matched network and reach the outstanding super-resolution effect. Both the simulated and real tested data, acquired by a 160 {$\sim$} 220 GHz imager, have been used to demonstrate the superiority of our method.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\NPXH5VLS\Li et al. - 2020 - Adaptive terahertz image super-resolution with adj.pdf}
+}
+
+@inproceedings{liTerahertzImageSuperresolution2017a,
+  title = {A Terahertz Image Super-Resolution Reconstruction Algorithm Based on the Deep Convolutional Neural Network},
+  booktitle = {{{AOPC}} 2017: {{Optical Sensing}} and {{Imaging Technology}} and {{Applications}}},
+  author = {Li, Zeng and Li, Xiaotong and Cen, Zhaofeng},
+  editor = {Jiang, Yadong and Gong, Haimei and Chen, Weibiao and Li, Jin},
+  year = {2017},
+  month = oct,
+  pages = {73},
+  publisher = {{SPIE}},
+  address = {{Beijing, China}},
+  doi = {10.1117/12.2283469},
+  urldate = {2023-10-02},
+  abstract = {Nowadays with the growing threat of terrorist attacks throughout the world, effective security technologies are of urgent need to protect crowds and critical infrastructure. Terahertz wave has emerged as a more powerful tool in security. Terahertz wave is able to penetrate dielectrics such as plastic and cloth so as to detect weapons and contraband hidden under people's clothing without harming human bodies. Nevertheless, image obtained in this frequency range is pretty poor because the diffraction at their relatively long wavelength cannot be ignored in such case. In this paper, we shall briefly introduce the high-resolution (HR) reconstruction for terahertz imaging utilizing the ideology and methodology of super-resolution (SR) restoration in image processing which aims at recovering a high-resolution image from a single low-resolution image. Through the preliminary feasibility research, we applied the image super-resolution algorithm based on the deep convolutional neural network (CNN) to the single passive terahertz image reconstruction. Our deep CNN demonstrates state-of-the-art restoration quality and achieve fast speed as well. Our results indicate that the processed passive terahertz images have clearer edges as well as outlines and are easier to identify suspicious items than the original ones. On the whole, our method outperforms other methods such as the interpolation method and the learning-based image super-resolution reconstruction algorithm. The results indicate a promising prospect for HR terahertz imaging reconstruction.},
+  isbn = {978-1-5106-1405-5 978-1-5106-1406-2},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\EJ2U55SM\Li et al. - 2017 - A terahertz image super-resolution reconstruction .pdf}
+}
+
+@article{longTerahertzImageSuperresolution2019,
+  title = {Terahertz Image Super-Resolution Based on a Deep Convolutional Neural Network},
+  author = {Long, Zhenyu and Wang, Tianyi and You, ChengWu and Yang, Zhengang and Wang, Kejia and Liu, Jinsong},
+  year = {2019},
+  month = apr,
+  journal = {Applied Optics},
+  volume = {58},
+  number = {10},
+  pages = {2731},
+  issn = {1559-128X, 2155-3165},
+  doi = {10.1364/AO.58.002731},
+  urldate = {2023-10-02},
+  langid = {english},
+  file = {C\:\\Users\\syu\\Zotero\\storage\\8MLXGIXT\\Long et al. - 2019 - Terahertz image super-resolution based on a deep c.pdf;C\:\\Users\\syu\\Zotero\\storage\\937X6YTP\\Long et al. - 2019 - Terahertz image super-resolution based on a deep c.pdf}
+}
+
+@article{luMathematicalDegradationModel2021a,
+  title = {Mathematical {{Degradation Model Learning}} for {{Terahertz Image Super-Resolution}}},
+  author = {Lu, Yao and Mao, Qi and Liu, Jingbo},
+  year = {2021},
+  journal = {IEEE Access},
+  volume = {9},
+  pages = {128988--128995},
+  issn = {2169-3536},
+  doi = {10.1109/ACCESS.2021.3113258},
+  urldate = {2023-10-02},
+  abstract = {This study proposes a super-resolution (SR) method for terahertz time-domain spectroscopy (THz-TDS) images, combining a convolutional neural network (CNN) and a mathematical degradation model. The mathematical degradation model considers three possible factors affecting the quality of THz images: the blur kernel, noise, and down-sampler. Specifically, the blur kernel characterizes the continual change of image blur extent with the imaging distance. The designed CNN learns from the degradation model and then copes with the distance dependent image restoration problem based on the learned mapping between the low and high-resolution image pairs. The designed two-stage comparative experiment shows that the proposed method significantly improved the quality of the THz images. To be specific, our proposed method enhanced the resolution by a factor of 1.95 to 0.61 mm with respect to the diffraction limit. In addition, our method achieved the greatest improvement in terms of image quality, with an increase of 4.35 in PSNR and 0.10 in SSIM. We believe that our method could offer a satisfactory solution for THz-TDs image SR applications.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\XTMX6J5D\Lu et al. - 2021 - Mathematical Degradation Model Learning for Terahe.pdf}
+}
+
+@article{mittlemanTwentyYearsTerahertz2018a,
+  title = {Twenty Years of Terahertz Imaging [{{Invited}}]},
+  author = {Mittleman, Daniel M.},
+  year = {2018},
+  month = apr,
+  journal = {Optics Express},
+  volume = {26},
+  number = {8},
+  pages = {9417},
+  issn = {1094-4087},
+  doi = {10.1364/OE.26.009417},
+  urldate = {2023-10-02},
+  abstract = {The birth of terahertz imaging approximately coincides with the birth of the journal Optics Express. The 20th anniversary of the journal is therefore an opportune moment to consider the state of progress in the field of terahertz imaging. This article discusses some of the compelling reasons that one may wish to form images in the THz range, in order to provide a perspective of how far the field has come since the early demonstrations of the mid1990's. It then focuses on a few of the more prominent frontiers of current research, highlighting their impacts on both fundamental science and applications.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\KAA3YXIR\Mittleman - 2018 - Twenty years of terahertz imaging [Invited].pdf}
+}
+
+@article{ruanEfficientSubpixelConvolutional2022,
+  title = {Efficient Sub-Pixel Convolutional Neural Network for Terahertz Image Super-Resolution},
+  author = {Ruan, Haihang and Tan, Zhiyong and Chen, Liangtao and Wan, Wenjain and Cao, Juncheng},
+  year = {2022},
+  month = jun,
+  journal = {Optics Letters},
+  volume = {47},
+  number = {12},
+  pages = {3115},
+  issn = {0146-9592, 1539-4794},
+  doi = {10.1364/OL.454267},
+  urldate = {2023-10-02},
+  abstract = {Terahertz waves are electromagnetic waves located at 0.1\textendash 10 THz, and terahertz imaging technology can be applied to security inspection, biomedicine, non-destructive testing of materials, and other fields. At present, terahertz images have unclear data and rough edges. Therefore, improving the resolution of terahertz images is one of the current hot research topics. This paper proposes an efficient terahertz image super-resolution model, which is used to extract low-resolution (LR) image features and learn the mapping of LR images to high-resolution (HR) images, and then introduce an attention mechanism to let the network pay attention to more information features. Finally, we use sub-pixel convolution to learn a set of scaling filters to upgrade the final LR feature map to an HR output, which not only reduces the model complexity, but also improves the quality of the terahertz image. The resolution reaches 31.67 db on the peak signal-to-noise ratio (PSNR) index and 0.86 on the structural similarity (SSIM) index. Experiments show that the efficient sub-pixel convolutional neural network used in this article achieves better accuracy and visual improvement compared with other terahertz image super-resolution algorithms.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\CHRV4GPX\Ruan et al. - 2022 - Efficient sub-pixel convolutional neural network f.pdf}
+}
+
+@inproceedings{tuTerahertzDeepLearning2020,
+  title = {Terahertz {{Deep Learning Super Resolution Imaging Training}} on {{Sinogram}}},
+  booktitle = {2020 45th {{International Conference}} on {{Infrared}}, {{Millimeter}}, and {{Terahertz Waves}} ({{IRMMW-THz}})},
+  author = {Tu, Zhao-Hong and Hung, Yi-Chun and Yang, Shang-Hua},
+  year = {2020},
+  month = nov,
+  pages = {1--2},
+  publisher = {{IEEE}},
+  address = {{Buffalo, NY, USA}},
+  doi = {10.1109/IRMMW-THz46771.2020.9370682},
+  urldate = {2023-10-02},
+  abstract = {We presented a supervised deep learning method to decrease six-fold data acquisition time and to suppress terahertz image artifact levels based on sinogram from terahertz timedomain spectroscopy (THz-TDS). Our method delivered superior image quality than conventional bicubic interpolation method with 0.9612 and 0.0155 in mean square error (MSE) and structural similarity index (SSIM), respectively.},
+  isbn = {978-1-72816-620-9},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\ZPKPUFQF\Tu et al. - 2020 - Terahertz Deep Learning Super Resolution Imaging T.pdf}
+}
+
+@article{wangComplexZeroshotSuperresolution2022,
+  title = {Complex ``Zero-Shot'' Super-Resolution Reconstruction Algorithm for {{THz}} Imaging},
+  author = {Wang, Ying and Qi, Feng and Wang, Jinkuan},
+  year = {2022},
+  month = jul,
+  journal = {Applied Optics},
+  volume = {61},
+  number = {20},
+  pages = {5831},
+  issn = {1559-128X, 2155-3165},
+  doi = {10.1364/AO.463123},
+  urldate = {2023-10-02},
+  abstract = {To deal with a terahertz (THz) super-resolution (SR) algorithm based on a convolutional neural network (CNN) without standard training datasets, a complex ``zero-shot'' SR (CZSSR) reconstruction algorithm is proposed according to the internal image statistics with a five-layer complex CNN model. Instead of relying on pre-training, the proposed method is of sound self-adaptability. Compared with real ZSSR, the peak SNR of CZSSR rose by about 0.94~dB, MSE decreased by 0.042, and SSIM increased by about 40\% for the SR result of the measured data. The results show that the CZSSR method can solve the low-resolution problem of a THz imaging system and the shortage of datasets in THz SR based on CNN. Therefore, this research is of great significance for application in the fields of medical imaging and non-destructive detection.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\NWUQGPPQ\Wang et al. - 2022 - Complex “zero-shot” super-resolution reconstructio.pdf}
+}
+
+@article{wangTerahertzImageSuperresolution2021,
+  title = {Terahertz Image Super-Resolution Based on a Complex Convolutional Neural Network},
+  author = {Wang, Ying and Qi, Feng and Wang, Jinkuan},
+  year = {2021},
+  month = jul,
+  journal = {Optics Letters},
+  volume = {46},
+  number = {13},
+  pages = {3123},
+  issn = {0146-9592, 1539-4794},
+  doi = {10.1364/OL.422684},
+  urldate = {2023-10-02},
+  abstract = {Terahertz (THz) imaging has been applied successfully in numerous applications, from medical imaging to industrial non-destructive detection. However, low resolution has always been a problem due to its long wavelength. A convolution neural network (CNN) is quite effective at improving the resolution of images in optics, in which real numbers are manipulated corresponding to measured intensity. Compared to optics, it is quite feasible to gain both the amplitude and phase information in THz imaging. In this Letter, we have extended the CNN from a real number domain to a complex number domain based on the wave nature of THz light. To the best of our knowledge, this is the first time that such a complex convolution neural network (CCNN) has been shown to be successful in THz imaging. We have proved that resolution can be 0.4 times of the beam size via this approach, and half a wavelength resolution can be obtained easily. Compared to the CNN, the CCNN generates an extra 27.8\% increase in terms of contrast, implying a better image. Phase information can be recovered well, which is impossible for the CNN. Although the network is trained by the MNIST dataset, it is quite powerful for image reconstruction. Again, the CCNN outperforms the CNN in terms of generalization capability. We believe such an approach can help to overcome the lower-resolution bottleneck in THz imaging, and it can release the requirement of critical optical components and extensive fine-tuning in systems. THz biomedical imaging, non-destructive testing (NDT), and a lot of imaging applications can benefit from this approach.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\QJXIA3LM\Wang et al. - 2021 - Terahertz image super-resolution based on a comple.pdf}
+}
+
+@article{yangSuperresolutionReconstructionTerahertz2022,
+  title = {Super-Resolution Reconstruction of Terahertz Images Based on a Deep-Learning Network with a Residual Channel Attention Mechanism},
+  author = {Yang, Xiuwei and Zhang, Dehai and Wang, Zhongmin and Zhang, Yanbo and Wu, Jun and Wu, Biyuan and Wu, Xiaohu},
+  year = {2022},
+  month = apr,
+  journal = {Applied Optics},
+  volume = {61},
+  number = {12},
+  pages = {3363},
+  issn = {1559-128X, 2155-3165},
+  doi = {10.1364/AO.452511},
+  urldate = {2023-10-12},
+  abstract = {To date, the existing terahertz super-resolution reconstruction methods based on deep-learning networks have achieved noteworthy success. However, the terahertz image degradation process needs to fully consider the blur and noise of the high-frequency part of the image during the network training process, and cannot be replaced simply by interpolation, which has high complexity. The terahertz degradation model is systematically investigated, and effectively solves the above problems by introducing the remaining channel mechanism into the deep-learning network. On the one hand, an image degradation model suitable for the terahertz imaging process is adopted for the images in the training dataset, which improves the accuracy of network training. On the other hand, the residual channel attention mechanism is introduced to realize the adaptive adjustment of the dependence between network channels, which results in the network being more focused on the restoration of high-frequency information, thereby supporting the extraction of high-frequency edge details in the image. In addition, experimental results demonstrate that this method successfully improves the peak signal-to-noise ratios, and offers clearer edge details and a better overall reconstruction effect. We believe that this work may provide a new possibility to improve the resolution of terahertz images.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\Z3HJZ8LR\Yang et al. - 2022 - Super-resolution reconstruction of terahertz image.pdf}
+}
+
+@article{yuanLowHighResolutionTerahertz2022,
+  title = {A {{Low-}} and {{High-Resolution Terahertz Image Pair Construction Method With Gradient Fusion}} for {{Learning-Based Super-Resolution}}},
+  author = {Yuan, Fei and Zhou, Songbin and Cheng, Taobo and Liu, Yisen},
+  year = {2022},
+  journal = {IEEE Access},
+  volume = {10},
+  pages = {132506--132514},
+  issn = {2169-3536},
+  doi = {10.1109/ACCESS.2022.3230506},
+  urldate = {2023-10-02},
+  abstract = {Quality and feature quantity of low- and high-resolution image pairs for training are directly related to performance of learning-based super-resolution methods. In order to accurately increase learning features to the low- and high-resolution image pairs, we proposed a gradient degradation model of terahertz(THz) images to describe the process of a high-resolution THz image's gradient map is how degraded to corresponding low-resolution THz image's gradient map. And with the proposed model, we presented a low- and high-resolution THz image pair construction method with gradient fusion for learning-based superresolution. As gradient maps are fused to training pairs, performance of learning-based super-resolution methods for THz images could be improved. In addition, we applied the low- and high-resolution THz image pair construction method with gradient fusion to very deep super-resolution(VDSR) method and zero shot super-resolution(ZSSR) method, named VDSR method with gradient fusion and ZSSR method with gradient fusion, respectively. To evaluate the performance of these two improved methods, comparison experiments with passive millimeter-wave images and our THz lab data are presented. The experimental results show that the performance of the VDSR method with gradient fusion and the ZSSR method with gradient fusion have significant improvements in peak signal-to-noise ratio and structural similarity index measure than the VDSR method and the ZSSR method, respectively. It indicates that performance of learning-based superresolution methods for THz images could be improved by applying the proposed low- and high-resolution THz image pair construction method with gradient fusion.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\PEU732GZ\Yuan et al. - 2022 - A Low- and High-Resolution Terahertz Image Pair Co.pdf}
+}
+
+@article{zhangRestorationIntegratedCircuit2021,
+  title = {Restoration of Integrated Circuit Terahertz Image Based on Wavelet Denoising Technique and the Point Spread Function Model},
+  author = {Zhang, Zhirui and Lu, Yao and Lv, Cixing and Mao, Qi and Wang, Songlong and Yan, Shihan},
+  year = {2021},
+  month = mar,
+  journal = {Optics and Lasers in Engineering},
+  volume = {138},
+  pages = {106413},
+  issn = {01438166},
+  doi = {10.1016/j.optlaseng.2020.106413},
+  urldate = {2023-10-02},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\662VYU87\Zhang et al. - 2021 - Restoration of integrated circuit terahertz image .pdf}
+}
+
+
+@article{ahiQualityControlAuthentication2017,
+  title = {Quality Control and Authentication of Packaged Integrated Circuits Using Enhanced-Spatial-Resolution Terahertz Time-Domain Spectroscopy and Imaging},
+  author = {Ahi, Kiarash and Shahbazmohamadi, Sina and Asadizanjani, Navid},
+  year = {2017},
+  month = jul,
+  journal = {Optics and Lasers in Engineering},
+  volume = {104},
+  pages = {274--284},
+  doi = {10.1016/j.optlaseng.2017.07.007},
+  abstract = {Abstract   In this paper, a comprehensive set of techniques for quality control and authentication of packaged integrated circuits (IC) using terahertz (THz) time-domain spectroscopy (TDS) is developed. By material characterization, the presence of unexpected materials in counterfeit components is revealed. Blacktopping layers are detected using THz time-of-flight tomography, and thickness of hidden layers is measured. Sanded and contaminated components are detected by THz reflection-mode imaging. Differences between inside structures of counterfeit and authentic components are revealed through developing THz transmission imaging. For enabling accurate measurement of features by THz transmission imaging, a novel resolution enhancement technique (RET) has been developed. This RET is based on deconvolution of the THz image and the THz point spread function (PSF). The THz PSF is mathematically modeled through incorporating the spectrum of the THz imaging system, the axis of propagation of the beam, and the intensity extinction coefficient of the object into a Gaussian beam distribution. As a result of implementing this RET, the accuracy of the measurements on THz images has been improved from 2.4mm to 0.1mm and bond wires as small as 550\textmu m inside the packaging of the ICs are imaged.},
+  annotation = {MAG ID: 2738803669}
+}
+
+@inproceedings{hanTerahertzImageRestoration2020,
+  title = {Terahertz {{Image Restoration}} with ``{{Zero-Shot}}'' {{Super-Resolution}}},
+  booktitle = {2020 {{Cross Strait Radio Science}} \& {{Wireless Technology Conference}} ({{CSRSWTC}})},
+  author = {Han, Zhongde and Hu, Weidong and Li, Yade and Xu, Zhihao and Zhao, Yunzhang and Ni, Jiaqi and Ligthart, Leo},
+  year = {2020},
+  month = dec,
+  pages = {1--3},
+  publisher = {{IEEE}},
+  address = {{Fuzhou, China}},
+  doi = {10.1109/CSRSWTC50769.2020.9372649},
+  urldate = {2023-10-02},
+  abstract = {The spatial resolution of terahertz (THz) image is often degraded by many factors during the imaging process. Therefore, a ``Zero-Shot'' super-resolution CNN framework, which is trained only by the input image itself, is proposed to cope with those degradation factors. With this unsupervised framework, the restoration level of the CNN can be flexibly adjusted based on the input THz image in order to achieve the best restoration effect. Experimental results on both the simulated data and real tested THz data have proved the effectiveness of our method.},
+  isbn = {978-1-72818-181-3},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\37TLSAFS\Han et al. - 2020 - Terahertz Image Restoration with “Zero-Shot” Super.pdf}
+}
+
+@article{ljubenovicBeamShapeEffectsNoise2022,
+  title = {Beam-{{Shape Effects}} and {{Noise Removal From THz Time-Domain Images}} in {{Reflection Geometry}} in the 0.25\textendash 6 {{THz Range}}},
+  author = {Ljubenovic, Marina and Artesani, Alessia and Bonetti, Stefano and Traviglia, Arianna},
+  year = {2022},
+  month = nov,
+  journal = {IEEE Transactions on Terahertz Science and Technology},
+  volume = {12},
+  number = {6},
+  pages = {574--586},
+  issn = {2156-342X, 2156-3446},
+  doi = {10.1109/TTHZ.2022.3196191},
+  urldate = {2023-10-13},
+  abstract = {The increasing need of restoring high-resolution hyper-spectral (HS) images is determining a growing reliance on computer vision-based processing to enhance the clarity of the image content. HS images can, in fact, suffer from degradation effects or artefacts caused by instrument limitations. This article focuses on a procedure aimed at reducing the degradation effects, frequency-dependent blur and noise, in Terahertz time-domain spectroscopy (THz-TDS) images in reflection geometry. It describes the application of a joint deblurring and denoising approach that had been previously proved to be effective for the restoration of THz-TDS images in transmission geometry, but that had never been tested in reflection modality. This mode is often the only one that can be effectively used in most cases, for example, when analyzing objects that are either opaque in the THz range, or that cannot be displaced from their location (e.g., museums), such as those of cultural interest. Compared to transmission mode, reflection geometry introduces, however, further distortion to THz data, usually neglected in existing literature. In this work, we successfully implement image deblurring and denoising of both uniform-shape samples (a contemporary 1 Euro cent coin and an inlaid pendant) and samples with the uneven reliefs and corrosion products on the surface, which make the analysis of the object particularly complex (an ancient Roman silver coin). The study demonstrates the ability of image processing to restore data in the 0.25\textendash 6 THz range, spanning over more than four octaves, and providing the foundation for future analytical approaches of cultural heritage using the far-infrared spectrum still not sufficiently investigated in the literature.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\XGQRUVBR\Ljubenovic et al. - 2022 - Beam-Shape Effects and Noise Removal From THz Time.pdf}
+}
+
+@inproceedings{ljubenovicCNNbasedDeblurringTerahertz2020,
+  title = {{{CNN-based Deblurring}} of {{Terahertz Images}}:},
+  shorttitle = {{{CNN-based Deblurring}} of {{Terahertz Images}}},
+  booktitle = {Proceedings of the 15th {{International Joint Conference}} on {{Computer Vision}}, {{Imaging}} and {{Computer Graphics Theory}} and {{Applications}}},
+  author = {Ljubenovi{\'c}, Marina and Bazrafkan, Shabab and De Beenhouwer, Jan and Sijbers, Jan},
+  year = {2020},
+  pages = {323--330},
+  publisher = {{SCITEPRESS - Science and Technology Publications}},
+  address = {{Valletta, Malta}},
+  doi = {10.5220/0008973103230330},
+  urldate = {2023-10-02},
+  isbn = {978-989-758-402-2},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\H55GSPMN\Ljubenović et al. - 2020 - CNN-based Deblurring of Terahertz Images.pdf}
+}
+
+@article{maoImageFusionBased2020,
+  title = {Image Fusion Based on Multiscale Transform and Sparse Representation to Enhance Terahertz Images},
+  author = {Mao, Qi and Zhu, Yunlong and Lv, Cixing and Lu, Yao and Yan, Xiaohui and Wei, Dongshan and Yan, Shihan and Liu, Jingbo},
+  year = {2020},
+  month = aug,
+  journal = {Optics Express},
+  volume = {28},
+  number = {17},
+  pages = {25293},
+  issn = {1094-4087},
+  doi = {10.1364/OE.396604},
+  urldate = {2023-10-02},
+  abstract = {High-quality terahertz (THz) images are vital to integrated circuit (IC) manufacturing. Due to the unique sensitivity of THz waves to different materials, the images obtained from the point-spread function (PSF) model have fewer image details and less texture information in some frequency bands. This paper presents an image fusion technique to enhance the resolution of THz IC images. The source images obtained from the PSF model are processed by a fusion method combining a multiscale transform (MST) and sparse representation (SR). The low-pass band is handled by sparse representation, and the high-pass band is fused by the conventional ``max-absolute'' rule. From both objective and visual perspectives, four popular multiscale transforms\textemdash the Laplacian pyramid, the ratio of low-pass pyramids, the dual-tree complex wavelet transform and the curvelet transform\textemdash are thoroughly compared at different decomposition levels ranging from one to four. This work demonstrates the feasibility of using image fusion to enhance the resolution of THz IC images.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\ULXYNNZ4\Mao et al. - 2020 - Image fusion based on multiscale transform and spa.pdf}
+}
+
+@article{marinaljubenovicJointDeblurringDenoising2020,
+  title = {Joint {{Deblurring}} and {{Denoising}} of {{THz Time-Domain Images}}},
+  author = {{Marina Ljubenovic} and Ljubenovic, Marina and Zhuang, Lina and De Beenhouwer, Jan and Sijbers, Jan},
+  year = {2020},
+  journal = {IEEE Access},
+  volume = {9},
+  pages = {162--176},
+  doi = {10.1109/access.2020.3045605},
+  abstract = {Terahertz (THz) pulse/time-domain imaging attracted increased interest in recent years mostly due to its ability to extract dielectric properties of sample materials (i.e., absorption coefficient and the refraction index) from the amplitude and phase of each spectral component of the THz pulse. The resulting data from a THz time-domain system represents a 3-dimensional (3D) hyperspectral cube which contains several 2D images corresponding to different frequencies or bands. Due to a frequency-dependent non-zero THz beam waist, these 2D images are corrupted by blurring artifacts: a THz beam waist is wider on lower frequencies leading to more blurry corresponding 2D images. At higher frequencies, the beam waist is smaller resulting in sharper, but noisier images due to the decrease in the THz signal amplitude. The main focus of this work is the joint reduction of blur and noise from THz time-domain images. We propose two instances of a fast joint deblurring and denoising approach which is able to deal with THz time-domain images corrupted by different noise types and frequency-dependent blur. The experiments performed on synthetic and real THz time-domain images show that the proposed approach outperforms conventional 2D deblurring approaches and methods tailored to remote sensing hyperspectral images. To the best of our knowledge, this is the first time that a joint deblurring and denoising approach tailored to THz time-domain images is proposed taking into consideration band-dependent blur and different noise types.},
+  annotation = {MAG ID: 3113221250},
+  file = {C:\Users\syu\Zotero\storage\LKEA5AFU\Marina Ljubenovic et al_2020_Joint Deblurring and Denoising of THz Time-Domain Images.pdf}
+}
+
+@inproceedings{ningImageRestorationTerahertz2019,
+  title = {Image {{Restoration}} for {{Terahertz Image Based}} on {{Complex-Valued Deconvolution}}},
+  booktitle = {2019 8th {{Asia-Pacific Conference}} on {{Antennas}} and {{Propagation}} ({{APCAP}})},
+  author = {Ning, Wei and Qi, Feng and Wang, Jinkuan},
+  year = {2019},
+  month = aug,
+  pages = {108--109},
+  publisher = {{IEEE}},
+  address = {{Incheon, Korea (South)}},
+  doi = {10.1109/APCAP47827.2019.9471988},
+  urldate = {2023-10-02},
+  abstract = {According to the unique characteristics of terahertz (THz) waves, THz imaging has become a hot topic in widely application areas. However, the imaging resolution is constrained by its long wavelength. Generally, the deconvolution is always used to reconstruct the object function. In this paper, a method that combining the classic deconvolution algorithm with the complex-value data processing is investigated. It is posed that the proposed complex-number deconvolution achieves better performance compared to the real-valued deconvolution.},
+  isbn = {978-1-66540-054-1},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\KJ4QTQDC\Ning et al. - 2019 - Image Restoration for Terahertz Image Based on Com.pdf}
+}
+
+@article{ningResolutionEnhancementTerahertz2019,
+  title = {Resolution {{Enhancement}} in {{Terahertz Imaging}} via {{Deconvolution}}},
+  author = {Ning, Wei and Qi, Feng and Liu, Zhaoyang and Wang, Yelong and Wu, Hongming and Wang, Jinkuan},
+  year = {2019},
+  journal = {IEEE Access},
+  volume = {7},
+  pages = {65116--65121},
+  issn = {2169-3536},
+  doi = {10.1109/ACCESS.2019.2917531},
+  urldate = {2023-10-02},
+  abstract = {Nowadays, terahertz (THz) imaging is quite promising in scientific and biomedical applications. However, the much longer wavelength degrades the resolution of obtained images compared with classical imaging at optical frequencies. Imaging is considered to be a convolution process between the object function and point spread function (PSF) of the system. Thus, how to describe the object accurately from a blurred image is an inverse problem. In this paper, we demonstrate how well such a method can function. We would illustrate how to make current facilities overcome the physical limitations in imaging, which can image at the sub-spot level. Periodical stripes with a period of 0.8 mm are resolved at 0.3 THz. The resolution is 0.32 times the physical size of the focused beam. Moreover, this method is extended to the mathematical operations in a complex domain, which is distinct from previous image studies via visible/IR light. Physically, it means that we essentially deal with phase by making use of the wave nature of THz light. For the first time, it is demonstrated that the reconstructed phase can also describe the shape of the object by applying such an approach. In addition, we have successfully measured the diameter of human hair with a relative error of less than 10\% at 3 THz. As an example, we did an experiment on tissues of colorectal cancer and a better image is obtained, which would be helpful for medical diagnosis. We believe that such an approach is able to improve imaging performance at THz frequencies and many applications will gain from it.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\ECFR4BT8\Ning et al. - 2019 - Resolution Enhancement in Terahertz Imaging via De.pdf}
+}
+
+@article{suDataDrivenBasedTerahertzImage2023,
+  title = {Data-{{Driven-Based Terahertz Image Restoration}}},
+  author = {Su, Zhipeng and Zhang, Yixiong and Zhou, Jianyang and Shi, Jianghong and Qi, Feng},
+  year = {2023},
+  month = jun,
+  journal = {IEEE Sensors Journal},
+  volume = {23},
+  number = {11},
+  pages = {12284--12294},
+  issn = {1530-437X, 1558-1748, 2379-9153},
+  doi = {10.1109/JSEN.2023.3263834},
+  urldate = {2023-10-02},
+  abstract = {Terahertz (THz) has been widely used in radar, remote sensing, atmospheric and environmental monitoring, real-time biological information extraction, and medical diagnosis. However, the long-wavelength property of THz leads to low imaging resolution. Due to the expensive nature of experimental equipment and the difficulty of obtaining THz sources, most scientific institutions have difficulty in obtaining large amounts of the THz dataset. In addition, it is difficult for convolution neural networks (CNNs) to recover low-resolution complex images because of the phase information contained in the images. In this article, we build a THz imaging system and propose a progressive multiscale augmented neural network (PMANN) to address this problem. PMANN integrates self-attention and channel attention for image contextual feature extraction by the proposed progressive network. Compared with the complex CNN (CCNN) in private cartoon datasets, PMANN improves the quantitative metrics on peak signal-to-noise ratio (PSNR) by about 18.6\%. It also obtains better visual quality than CCNN. Moreover, we publicly synthesize the first grayscale image MinistTHz dataset. Compared with SwinTransformer, PMANN improves the PSNR by 28.2\%. The experimental results on the THz dataset demonstrate that the proposed model achieves better performances than the state-of-the-art (SOTA) models. Our synthetic THz dataset is open at https://github.com/szpxmu/PMANN.},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\FD26X6BX\Su et al. - 2023 - Data-Driven-Based Terahertz Image Restoration.pdf}
+}
+
+@incollection{suSeeingBlackBox2022,
+  title = {Seeing {{Through}} a {{Black Box}}: {{Toward High-Quality Terahertz Imaging}} via {{Subspace-and-Attention Guided Restoration}}},
+  shorttitle = {Seeing {{Through}} a {{Black Box}}},
+  booktitle = {Computer {{Vision}} \textendash{} {{ECCV}} 2022},
+  author = {Su, Wen-Tai and Hung, Yi-Chun and Yu, Po-Jen and Yang, Shang-Hua and Lin, Chia-Wen},
+  editor = {Avidan, Shai and Brostow, Gabriel and Ciss{\'e}, Moustapha and Farinella, Giovanni Maria and Hassner, Tal},
+  year = {2022},
+  volume = {13667},
+  pages = {453--469},
+  publisher = {{Springer Nature Switzerland}},
+  address = {{Cham}},
+  doi = {10.1007/978-3-031-20071-7_27},
+  urldate = {2023-10-02},
+  abstract = {Terahertz (THz) imaging has recently attracted significant attention thanks to its non-invasive, non-destructive, non-ionizing, materialclassification, and ultra-fast nature for object exploration and inspection. However, its strong water absorption nature and low noise tolerance lead to undesired blurs and distortions of reconstructed THz images. The performances of existing restoration methods are highly constrained by the diffraction-limited THz signals. To address the problem, we propose a novel Subspace-Attention-guided Restoration Network (SARNet) that fuses multi-spectral features of a THz image for effective restoration. To this end, SARNet uses multi-scale branches to extract spatio-spectral features of amplitude and phase which are then fused via shared subspace projection and attention guidance. Here, we experimentally construct a THz time-domain spectroscopy system covering a broad frequency range from 0.1 THz to 4 THz for building up temporal/spectral/spatial/phase/material THz database of hidden 3D objects. Complementary to a quantitative evaluation, we demonstrate the effectiveness of SARNet on 3D THz tomographic reconstruction applications.},
+  isbn = {978-3-031-20070-0 978-3-031-20071-7},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\SYKPT5KR\Su et al. - 2022 - Seeing Through a Black Box Toward High-Quality Te.pdf}
+}
+
+@article{wongComputationalImageEnhancement2018,
+  title = {Computational {{Image Enhancement}} for {{Frequency Modulated Continuous Wave}} ({{FMCW}}) {{THz Image}}},
+  author = {Wong, Tak Ming and Kahl, Matthias and Bol{\'i}var, Peter Haring and Kolb, Andreas},
+  year = {2018},
+  journal = {arXiv: Image and Video Processing},
+  doi = {10.1007/s10762-019-00609-w},
+  abstract = {In this paper, a novel method to enhance Frequency Modulated Continuous Wave (FMCW) THz imaging resolution beyond its diffraction limit is proposed. Our method comprises two stages. Firstly, we reconstruct the signal in depth-direction using a sinc-envelope, yielding a significant improvement in depth estimation and signal parameter extraction. The resulting high precision depth estimate is used to deduce an accurate reflection intensity THz image. This image is fed in the second stage of our method to a 2D blind deconvolution procedure, adopted to enhance the lateral THz image resolution beyond the diffraction limit. Experimental data acquired with a FMCW system operating at 577 GHz with a bandwidth of 126 GHz shows that the proposed method enhances the lateral resolution by a factor of 2.29 to 346.2um with respect to the diffraction limit. The depth accuracy is 91um. Interestingly, the lateral resolution enhancement achieved with this blind deconvolution concept leads to better results in comparison to conventional gaussian deconvolution. Experimental data on a PCB resolution target is presented, in order to quantify the resolution enhancement and to compare the performance with established image enhancement approaches. The presented technique allows exposure of the interwoven fibre reinforced embedded structures of the PCB test sample.},
+  annotation = {MAG ID: 3101127840}
+}
+
+@incollection{wongTrainingAutoencoderbasedOptimizers2019,
+  title = {Training {{Auto-encoder-based Optimizers}} for {{Terahertz Image Reconstruction}}},
+  author = {Wong, Tak Ming and Kahl, Matthias and Bol{\'i}var, Peter Haring and Kolb, Andreas and M{\"o}ller, Michael},
+  year = {2019},
+  volume = {11824},
+  eprint = {1907.01377},
+  primaryclass = {cs, eess},
+  pages = {93--106},
+  doi = {10.1007/978-3-030-33676-9_7},
+  urldate = {2023-10-12},
+  abstract = {Terahertz (THz) sensing is a promising imaging technology for a wide variety of different applications. Extracting the interpretable and physically meaningful parameters for such applications, however, requires solving an inverse problem in which a model function determined by these parameters needs to be fitted to the measured data. Since the underlying optimization problem is nonconvex and very costly to solve, we propose learning the prediction of suitable parameters from the measured data directly. More precisely, we develop a model-based autoencoder in which the encoder network predicts suitable parameters and the decoder is fixed to a physically meaningful model function, such that we can train the encoding network in an unsupervised way. We illustrate numerically that the resulting network is more than 140 times faster than classical optimization techniques while making predictions with only slightly higher objective values. Using such predictions as starting points of local optimization techniques allows us to converge to better local minima about twice as fast as optimizing without the network-based initialization.},
+  archiveprefix = {arxiv},
+  langid = {english},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,Electrical Engineering and Systems Science - Image and Video Processing},
+  file = {C:\Users\syu\Zotero\storage\KZPFH3HW\Wong et al. - 2019 - Training Auto-encoder-based Optimizers for Teraher.pdf}
+}
+
+@inproceedings{zhangTerahertzImageRestoration2022,
+  title = {Terahertz {{Image Restoration Benchmarking Dataset}}},
+  booktitle = {{{ICASSP}} 2022 - 2022 {{IEEE International Conference}} on {{Acoustics}}, {{Speech}} and {{Signal Processing}} ({{ICASSP}})},
+  author = {Zhang, Yixiong and Su, Zhipeng and Qi, Feng and Zhou, Jianyang and Zhang, Xiao-Ping},
+  year = {2022},
+  month = may,
+  pages = {1700--1704},
+  publisher = {{IEEE}},
+  address = {{Singapore, Singapore}},
+  doi = {10.1109/ICASSP43922.2022.9747368},
+  urldate = {2023-10-02},
+  isbn = {978-1-66540-540-9},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\Q53DMPCB\Zhang et al. - 2022 - Terahertz Image Restoration Benchmarking Dataset.pdf}
+}
+@article{li2010continuous,
+  title={Continuous-wave terahertz scanning image resolution analysis and restoration},
+  author={Li, Qi and Yin, Qiguo and Yao, Rui and Ding, Shenghui and Wang, Qi},
+  journal={Optical Engineering},
+  volume={49},
+  number={3},
+  pages={037007--037007},
+  year={2010},
+  publisher={Society of Photo-Optical Instrumentation Engineers}
+}
+@article{ding2010high,
+  title={High-resolution terahertz reflective imaging and image restoration},
+  author={Ding, Sheng-Hui and Li, Qi and Yao, Rui and Wang, Qi},
+  journal={Applied optics},
+  volume={49},
+  number={36},
+  pages={6834--6839},
+  year={2010},
+  publisher={Optica Publishing Group}
+}
+@article{xu2014high,
+  title={High-resolution reconstruction for terahertz imaging},
+  author={Xu, Li-Min and Fan, Wen-Hui and Liu, Jia},
+  journal={Applied optics},
+  volume={53},
+  number={33},
+  pages={7891--7897},
+  year={2014},
+  publisher={Optica Publishing Group}
+}
+
+% -----
+
+% ----- Related Works: DLIR -----
+@incollection{ronnebergerUNetConvolutionalNetworks2015,
+  title = {U-{{Net}}: {{Convolutional Networks}} for {{Biomedical Image Segmentation}}},
+  shorttitle = {U-{{Net}}},
+  booktitle = {Medical {{Image Computing}} and {{Computer-Assisted Intervention}} \textendash{} {{MICCAI}} 2015},
+  author = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  editor = {Navab, Nassir and Hornegger, Joachim and Wells, William M. and Frangi, Alejandro F.},
+  year = {2015},
+  volume = {9351},
+  pages = {234--241},
+  publisher = {{Springer International Publishing}},
+  address = {{Cham}},
+  doi = {10.1007/978-3-319-24574-4_28},
+  urldate = {2023-10-23},
+  abstract = {There is large consent that successful training of deep networks requires many thousand annotated training samples. In this paper, we present a network and training strategy that relies on the strong use of data augmentation to use the available annotated samples more efficiently. The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization. We show that such a network can be trained end-to-end from very few images and outperforms the prior best method (a sliding-window convolutional network) on the ISBI challenge for segmentation of neuronal structures in electron microscopic stacks. Using the same network trained on transmitted light microscopy images (phase contrast and DIC) we won the ISBI cell tracking challenge 2015 in these categories by a large margin. Moreover, the network is fast. Segmentation of a 512x512 image takes less than a second on a recent GPU. The full implementation (based on Caffe) and the trained networks are available at http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net.},
+  isbn = {978-3-319-24573-7 978-3-319-24574-4},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\D3M4F2ED\Ronneberger et al. - 2015 - U-Net Convolutional Networks for Biomedical Image.pdf}
+}
+@inproceedings{dongSRCNN2014,
+  title={Learning a deep convolutional network for image super-resolution},
+  author={Dong, Chao and Loy, Chen Change and He, Kaiming and Tang, Xiaoou},
+  booktitle={Computer Vision--ECCV 2014: 13th European Conference, Zurich, Switzerland, September 6-12, 2014, Proceedings, Part IV 13},
+  pages={184--199},
+  year={2014},
+  organization={Springer}
+}
+@article{zhangDnCNN2017,
+  title={Beyond a gaussian denoiser: Residual learning of deep cnn for image denoising},
+  author={Zhang, Kai and Zuo, Wangmeng and Chen, Yunjin and Meng, Deyu and Zhang, Lei},
+  journal={IEEE transactions on image processing},
+  volume={26},
+  number={7},
+  pages={3142--3155},
+  year={2017},
+  publisher={IEEE}
+}
+@inproceedings{liangSwinIRImageRestoration2021,
+  title = {{{SwinIR}}: {{Image Restoration Using Swin Transformer}}},
+  shorttitle = {{{SwinIR}}},
+  booktitle = {2021 {{IEEE}}/{{CVF International Conference}} on {{Computer Vision Workshops}} ({{ICCVW}})},
+  author = {Liang, Jingyun and Cao, Jiezhang and Sun, Guolei and Zhang, Kai and Van Gool, Luc and Timofte, Radu},
+  year = {2021},
+  month = oct,
+  pages = {1833--1844},
+  publisher = {{IEEE}},
+  address = {{Montreal, BC, Canada}},
+  doi = {10.1109/ICCVW54120.2021.00210},
+  urldate = {2023-10-16},
+  abstract = {Image restoration is a long-standing low-level vision problem that aims to restore high-quality images from lowquality images (e.g., downscaled, noisy and compressed images). While state-of-the-art image restoration methods are based on convolutional neural networks, few attempts have been made with Transformers which show impressive performance on high-level vision tasks. In this paper, we propose a strong baseline model SwinIR for image restoration based on the Swin Transformer. SwinIR consists of three parts: shallow feature extraction, deep feature extraction and high-quality image reconstruction. In particular, the deep feature extraction module is composed of several residual Swin Transformer blocks (RSTB), each of which has several Swin Transformer layers together with a residual connection. We conduct experiments on three representative tasks: image super-resolution (including classical, lightweight and real-world image super-resolution), image denoising (including grayscale and color image denoising) and JPEG compression artifact reduction. Experimental results demonstrate that SwinIR outperforms state-of-the-art methods on different tasks by up to 0.14{$\sim$}0.45dB, while the total number of parameters can be reduced by up to 67\%.},
+  isbn = {978-1-66540-191-3},
+  langid = {english},
+  keywords = {SwinIR},
+  file = {C:\Users\syu\Zotero\storage\FNIGFPFY\Liang et al. - 2021 - SwinIR Image Restoration Using Swin Transformer.pdf}
+}
+
+@inproceedings{wangUformerGeneralUShaped2022,
+  title = {Uformer: {{A General U-Shaped Transformer}} for {{Image Restoration}}},
+  shorttitle = {Uformer},
+  booktitle = {2022 {{IEEE}}/{{CVF Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})},
+  author = {Wang, Zhendong and Cun, Xiaodong and Bao, Jianmin and Zhou, Wengang and Liu, Jianzhuang and Li, Houqiang},
+  year = {2022},
+  month = jun,
+  pages = {17662--17672},
+  publisher = {{IEEE}},
+  address = {{New Orleans, LA, USA}},
+  doi = {10.1109/CVPR52688.2022.01716},
+  urldate = {2023-10-23},
+  abstract = {In this paper, we present Uformer, an effective and efficient Transformer-based architecture for image restoration, in which we build a hierarchical encoder-decoder network using the Transformer block. In Uformer, there are two core designs. First, we introduce a novel locally-enhanced window (LeWin) Transformer block, which performs nonoverlapping window-based self-attention instead of global self-attention. It significantly reduces the computational complexity on high resolution feature map while capturing local context. Second, we propose a learnable multi-scale restoration modulator in the form of a multi-scale spatial bias to adjust features in multiple layers of the Uformer decoder. Our modulator demonstrates superior capability for restoring details for various image restoration tasks while introducing marginal extra parameters and computational cost. Powered by these two designs, Uformer enjoys a high capability for capturing both local and global dependencies for image restoration. To evaluate our approach, extensive experiments are conducted on several image restoration tasks, including image denoising, motion deblurring, defocus deblurring and deraining. Without bells and whistles, our Uformer achieves superior or comparable performance compared with the state-of-the-art algorithms. The code and models are available at https: //github.com/ZhendongWang6/Uformer.},
+  isbn = {978-1-66546-946-3},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\SDJ9KH87\Wang et al. - 2022 - Uformer A General U-Shaped Transformer for Image .pdf}
+}
+
+@inproceedings{zamirRestormerEfficientTransformer2022,
+  title = {Restormer: {{Efficient Transformer}} for {{High-Resolution Image Restoration}}},
+  shorttitle = {Restormer},
+  booktitle = {2022 {{IEEE}}/{{CVF Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})},
+  author = {Zamir, Syed Waqas and Arora, Aditya and Khan, Salman and Hayat, Munawar and Khan, Fahad Shahbaz and Yang, Ming-Hsuan},
+  year = {2022},
+  month = jun,
+  pages = {5718--5729},
+  publisher = {{IEEE}},
+  address = {{New Orleans, LA, USA}},
+  doi = {10.1109/CVPR52688.2022.00564},
+  urldate = {2023-10-23},
+  abstract = {Since convolutional neural networks (CNNs) perform well at learning generalizable image priors from largescale data, these models have been extensively applied to image restoration and related tasks. Recently, another class of neural architectures, Transformers, have shown significant performance gains on natural language and high-level vision tasks. While the Transformer model mitigates the shortcomings of CNNs (i.e., limited receptive field and inadaptability to input content), its computational complexity grows quadratically with the spatial resolution, therefore making it infeasible to apply to most image restoration tasks involving high-resolution images. In this work, we propose an efficient Transformer model by making several key designs in the building blocks (multi-head attention and feed-forward network) such that it can capture long-range pixel interactions, while still remaining applicable to large images. Our model, named Restoration Transformer (Restormer), achieves state-of-the-art results on several image restoration tasks, including image deraining, single-image motion deblurring, defocus deblurring (single-image and dual-pixel data), and image denoising (Gaussian grayscale/color denoising, and real image denoising). The source code and pre-trained models are available at https://github.com/swz30/Restormer.},
+  isbn = {978-1-66546-946-3},
+  langid = {english},
+  file = {C:\Users\syu\Zotero\storage\KW3LVJ4E\Zamir et al. - 2022 - Restormer Efficient Transformer for High-Resoluti.pdf}
+}
+@inproceedings{chenActivatingMorePixels2023,
+  title={Activating more pixels in image super-resolution transformer},
+  author={Chen, Xiangyu and Wang, Xintao and Zhou, Jiantao and Qiao, Yu and Dong, Chao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={22367--22377},
+  year={2023}
+}
+@article{vaswani2017attention,
+  title={Attention is all you need},
+  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+@inproceedings{gu2012fast,
+  title={Fast image super resolution via local regression},
+  author={Gu, Shuhang and Sang, Nong and Ma, Fan},
+  booktitle={Proceedings of the 21st International Conference on Pattern Recognition (ICPR2012)},
+  pages={3128--3131},
+  year={2012},
+  organization={IEEE}
+}
+@inproceedings{timofte2013anchored,
+  title={Anchored neighborhood regression for fast example-based super-resolution},
+  author={Timofte, Radu and De Smet, Vincent and Van Gool, Luc},
+  booktitle={Proceedings of the IEEE international conference on computer vision},
+  pages={1920--1927},
+  year={2013}
+}
+@inproceedings{timofte2015a+,
+  title={A+: Adjusted anchored neighborhood regression for fast super-resolution},
+  author={Timofte, Radu and De Smet, Vincent and Van Gool, Luc},
+  booktitle={Computer Vision--ACCV 2014: 12th Asian Conference on Computer Vision, Singapore, Singapore, November 1-5, 2014, Revised Selected Papers, Part IV 12},
+  pages={111--126},
+  year={2015},
+  organization={Springer}
+}
+@inproceedings{michaeli2013nonparametric,
+  title={Nonparametric blind super-resolution},
+  author={Michaeli, Tomer and Irani, Michal},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
+  pages={945--952},
+  year={2013}
+}
+@article{he2010single,
+  title={Single image haze removal using dark channel prior},
+  author={He, Kaiming and Sun, Jian and Tang, Xiaoou},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={33},
+  number={12},
+  pages={2341--2353},
+  year={2010},
+  publisher={IEEE}
+}
+@article{zhang2021plug,
+  title={Plug-and-play image restoration with deep denoiser prior},
+  author={Zhang, Kai and Li, Yawei and Zuo, Wangmeng and Zhang, Lei and Van Gool, Luc and Timofte, Radu},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={44},
+  number={10},
+  pages={6360--6376},
+  year={2021},
+  publisher={IEEE}
+}
+@inproceedings{kim2016accurate,
+  title={Accurate image super-resolution using very deep convolutional networks},
+  author={Kim, Jiwon and Lee, Jung Kwon and Lee, Kyoung Mu},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={1646--1654},
+  year={2016}
+}
+@inproceedings{wang2018esrgan,
+  title={Esrgan: Enhanced super-resolution generative adversarial networks},
+  author={Wang, Xintao and Yu, Ke and Wu, Shixiang and Gu, Jinjin and Liu, Yihao and Dong, Chao and Qiao, Yu and Change Loy, Chen},
+  booktitle={Proceedings of the European conference on computer vision (ECCV) workshops},
+  pages={0--0},
+  year={2018}
+}
+@inproceedings{zhang2018residual,
+  title={Residual dense network for image super-resolution},
+  author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={2472--2481},
+  year={2018}
+}
+@article{zhang2020residual,
+  title={Residual dense network for image restoration},
+  author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={43},
+  number={7},
+  pages={2480--2495},
+  year={2020},
+  publisher={IEEE}
+}
+@article{peng2019dilated,
+  title={Dilated residual networks with symmetric skip connection for image denoising},
+  author={Peng, Yali and Zhang, Lu and Liu, Shigang and Wu, Xiaojun and Zhang, Yu and Wang, Xili},
+  journal={Neurocomputing},
+  volume={345},
+  pages={67--76},
+  year={2019},
+  publisher={Elsevier}
+}
+@inproceedings{chen2022simple,
+  title={Simple baselines for image restoration},
+  author={Chen, Liangyu and Chu, Xiaojie and Zhang, Xiangyu and Sun, Jian},
+  booktitle={European Conference on Computer Vision},
+  pages={17--33},
+  year={2022},
+  organization={Springer}
+}
+@article{fu2021model,
+  title={A model-driven deep unfolding method for jpeg artifacts removal},
+  author={Fu, Xueyang and Wang, Menglu and Cao, Xiangyong and Ding, Xinghao and Zha, Zheng-Jun},
+  journal={IEEE Transactions on Neural Networks and Learning Systems},
+  volume={33},
+  number={11},
+  pages={6802--6816},
+  year={2021},
+  publisher={IEEE}
+}
+
+@inproceedings{agustsson2017ntire,
+  title={Ntire 2017 challenge on single image super-resolution: Dataset and study},
+  author={Agustsson, Eirikur and Timofte, Radu},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition workshops},
+  pages={126--135},
+  year={2017}
+}
+@inproceedings{timofte2017ntire,
+  title={Ntire 2017 challenge on single image super-resolution: Methods and results},
+  author={Timofte, Radu and Agustsson, Eirikur and Van Gool, Luc and Yang, Ming-Hsuan and Zhang, Lei},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition workshops},
+  pages={114--125},
+  year={2017}
+}
+@inproceedings{shi2016real,
+  title={Real-time single image and video super-resolution using an efficient sub-pixel convolutional neural network},
+  author={Shi, Wenzhe and Caballero, Jose and Husz{\'a}r, Ferenc and Totz, Johannes and Aitken, Andrew P and Bishop, Rob and Rueckert, Daniel and Wang, Zehan},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={1874--1883},
+  year={2016}
+}
+@inproceedings{zhang2018image,
+  title={Image super-resolution using very deep residual channel attention networks},
+  author={Zhang, Yulun and Li, Kunpeng and Li, Kai and Wang, Lichen and Zhong, Bineng and Fu, Yun},
+  booktitle={Proceedings of the European conference on computer vision (ECCV)},
+  pages={286--301},
+  year={2018}
+}
+@inproceedings{niu2020han,
+  title={Single image super-resolution via a holistic attention network},
+  author={Niu, Ben and Wen, Weilei and Ren, Wenqi and Zhang, Xiangde and Yang, Lianping and Wang, Shuzhen and Zhang, Kaihao and Cao, Xiaochun and Shen, Haifeng},
+  booktitle={Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XII 16},
+  pages={191--207},
+  year={2020},
+  organization={Springer}
+}
+@inproceedings{chu2022nafssr,
+  title={NAFSSR: Stereo image super-resolution using NAFNet},
+  author={Chu, Xiaojie and Chen, Liangyu and Yu, Wenqing},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={1239--1248},
+  year={2022}
+}

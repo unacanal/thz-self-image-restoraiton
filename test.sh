@@ -9,17 +9,31 @@
 # CUDA_VISIBLE_DEVICES=0 python test.py --test_img thz/resol1951_2_e_2.1THz.png --ckpt_path checkpoints/resol19512e_0.4_to_2.1THz.pt
 
 : ' ===== Experiment 1: One-to-One ===== '
-# echo "Experiment 1: One-to-One"
-# for i in $(seq 0.2 0.1 3.0); do
-#     for j in $(seq 0.3 0.1 3.0); do
-#     if (( $(echo "$i < $j" |bc -l) )); then
-#         echo $i $j
-#         # for k in $(seq 0.2 0.2 1.0) $(seq 1.2 0.2 2.2); do
-#         CUDA_VISIBLE_DEVICES=0 python test.py --ckpt_path checkpoints/resol19512e_${i}_to_${j}THz.pt --save_dir exp1_o2o_v2
-#         # done
-#     fi
-#     done
-# done
+echo "Experiment 1: One-to-One"
+function float_lt() {
+    awk -v a="$1" -v b="$2" 'BEGIN {print (a < b)}'
+}
+
+for i in $(seq 0.1 0.1 3.0); do
+    for j in $(seq 0.1 0.1 3.0); do
+        # if [[ $(float_lt $i $j) -eq 1 ]]; then
+            echo $i $j
+            CUDA_VISIBLE_DEVICES=2 python test.py --ckpt_path checkpoints/ZSSR_o2o/resol1951_2_e_${i}_to_${j}THz_best.pt --save_dir o2o_best; CUDA_VISIBLE_DEVICES=2 python test.py --ckpt_path checkpoints/ZSSR_o2o/resol1951_2_e_${i}_to_${j}THz_latest.pt --save_dir o2o_latest
+        # fi
+    done
+done
+
+# CUDA_VISIBLE_DEVICES=0 python test.py --ckpt_path checkpoints/ZSSR/denoised_resol1951_2_e_1.5_to_2.0THz.pt --test_img denoised/denoised_resol1951_2_e_2.0THz.png --save_dir o2o
+
+: ' Test with CW image '
+# Knife 300GHz
+for i in $(seq 0.1 0.1 3.0); do
+    for j in $(seq 0.1 0.1 3.0); do
+        echo $i $j
+        CUDA_VISIBLE_DEVICES=0 python test.py --test_img hyperspectral/knife/0.31THz.png --ckpt_path checkpoints_main/ZSSR_o2o/resol1951_2_e_${i}_to_${j}THz_latest.pt --save_dir CW
+    done
+done
+
 
 
 : ' ===== Experiment 2: Band-to-Band ===== '
@@ -87,7 +101,11 @@
 
 
 : ' ===== Experiment 4: Recurrent ===== '
-# CUDA_VISIBLE_DEVICES=0 python test.py --test_img thz/resol1951_2_e_1.4THz.png --ckpt_path checkpoints/resol19512e_0.7_to_1.4THz.pt --save_dir exp4_dbdn
+CUDA_VISIBLE_DEVICES=0 \
+python test.py \
+    --test_img thz/resol1951_2_e_2.0THz.png \
+    --ckpt_path checkpoints_main/ZSSR_o2o/resol1951_2_e_1.5_to_2.0THz_latest.pt \
+    --save_dir recurrent
 # CUDA_VISIBLE_DEVICES=0 python test.py --test_img 'results/exp4_dbdn/resol1951_2_e_1.4THz(0.7to1.4)_zssr.png' --ckpt_path checkpoints/resol19512e_1.4_to_2.0THz.pt --save_dir exp4_dbdn
 
 ### Recurrent 1 ###
@@ -111,5 +129,30 @@
 # python test.py --ckpt_path checkpoints/resol19512e_0.5_to_1.0THz.pt --test_img thz/resol_1e_0.6THz.png --save_dir exp5
 # python test.py --ckpt_path checkpoints/resol19512e_0.4_to_0.8THz.pt \
 #     --test_img thz/resol_1e_0.6THz.png --save_dir exp5
-python test.py --ckpt_path checkpoints/resol_10e_1.0_to_resol_100e_1.0THz.pt --test_img thz/resol_100e_1.0THz.png --save_dir exp5
+# python test.py --ckpt_path checkpoints/resol_10e_1.0_to_resol_100e_1.0THz.pt --test_img thz/resol_100e_1.0THz.png --save_dir exp5
 # python test.py --ckpt_path checkpoints/resol_10e_1.0_to_resol_100e_1.0THz.pt --test_img thz/resol_10e_1.0THz.png --save_dir exp5
+# python test.py --ckpt_path checkpoints/ZSSR/resol1951_2_e_1.5_to_2.0THz_15000.pt --test_img thz/resol1951_2_e_2.0THz.png --save_dir exp6
+
+: ' ==== Other data inference ==== '
+# Bottle
+freq=2.0
+for i in $(seq 0.1 0.1 3.0); do
+    for j in $(seq 0.1 0.1 3.0); do
+        echo $i $j
+        CUDA_VISIBLE_DEVICES=0 python test.py \
+        --test_img hyperspectral/bottle/3bottle-e_${freq}THz.png \
+        --ckpt_path checkpoints_main/ZSSR_o2o/resol1951_2_e_${i}_to_${j}THz_latest.pt \
+        --save_dir "CW/bottle/${freq}"
+    done
+done
+
+# legbird
+for i in $(seq 0.1 0.1 3.0); do
+    for j in $(seq 0.1 0.1 3.0); do
+        echo $i $j
+        CUDA_VISIBLE_DEVICES=0 python test.py \
+        --test_img hyperspectral/legbird/3legbird-e_0.5THz.png \
+        --ckpt_path checkpoints_main/ZSSR_o2o/resol1951_2_e_${i}_to_${j}THz_latest.pt \
+        --save_dir CW/legbird/0.5
+    done
+done

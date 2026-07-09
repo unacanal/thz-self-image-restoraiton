@@ -7,13 +7,25 @@ import PIL
 from torchvision import transforms
 import argparse
 
+try:
+    BICUBIC = PIL.Image.Resampling.BICUBIC
+except AttributeError:  # Pillow < 9.1
+    BICUBIC = PIL.Image.BICUBIC
 
-def test(model, img, save_dir, save_name, args):
+
+def test(model, img, save_dir, save_name, scale=1):
     model.eval()
+
+    if scale > 1:
+        # ZSSR inference: bicubic-upscale the input by `scale`, then restore the
+        # high-frequency details at the enlarged resolution.
+        w, h = img.size
+        img = img.resize((w * scale, h * scale), BICUBIC)
 
     img = transforms.ToTensor()(img)
     img = torch.unsqueeze(img, 0)
     input = Variable(img.cuda())
+    print(input.shape)
     residual = model(input)
     output = input + residual
 
@@ -38,7 +50,10 @@ def get_args():
     parser.add_argument('--ckpt_path', type=str, help='Path to checkpoint')
     parser.add_argument('--save_dir', type=str, help='Dir to save result')
     parser.add_argument('--model', type=str, help='Model name')
-    parser.add_argument('--volt', type=str, default=None, help='Voltage' )
+    parser.add_argument('--volt', type=str, default=None, help='Voltage')
+    parser.add_argument('--denoised', action='store_true', help='Denoised')
+    parser.add_argument('--scale', type=int, default=1, \
+        help='ZSSR super-resolution scale factor (1 = no upscaling)')
 
     args = parser.parse_args()
 
@@ -64,12 +79,20 @@ if __name__ == '__main__':
         testset2 = np.arange(1.4, 3.1, 0.1)
         testset = np.append(testset, testset2)
 
+        if args.denoised:
+            testset = ['2.0040', '2.5050']
+
         for k in testset:
-            k = round(k, 2)
+            
             if args.volt:
+                k = round(k, 2)
                 test_img_path = f'hyperspectral/{args.volt}_30ps_e/{args.volt}_30ps_e_{k}THz.png'
+            elif args.denoised:
+                test_img_path = f'denoised/denoised_signal_jsh/{k}THz.png'
             else:
-                test_img_path =  f'hyperspectral/thz_new/resol1951_2_e_{k}THz.png'
+                k = round(k, 2)
+                test_img_path =  f'hyperspectral/centernorm_step0.1_reshapev2.0x5_shift1/resol1951_2_e_{k}THz.png'
+                
 
             test_img = PIL.Image.open(test_img_path)
 
@@ -78,16 +101,23 @@ if __name__ == '__main__':
                 '('+''.join(os.path.splitext(os.path.basename(args.ckpt_path))[0].split('_')[-4:]).split('THz')[0]+')'
             
             save_dir = os.path.join(args.save_dir, str(k))
-            test(model, test_img, save_dir, save_name, args)
+            test(model, test_img, save_dir, save_name, scale=args.scale)
 
     else:
         test_img = PIL.Image.open(args.test_img)
 
         test_img_name = os.path.splitext(os.path.basename(args.test_img))[0]
-        save_name = test_img_name + \
-            '('+ os.path.basename(args.ckpt_path).split('THz')[0] + ')'
+        
+        if 'recurrent' in args.save_dir:
+            save_name = test_img_name + \
+                '('+ os.path.basename(args.ckpt_path).split('_')[-2] + ')'
+            print(test_img_name, args.ckpt_path)
+            print(save_name)
+        else:
+            save_name = test_img_name + \
+                '('+ os.path.basename(args.ckpt_path).split('THz')[0] + ')'
         
         if os.path.basename(args.ckpt_path).split('_')[-2][:4] == 'lamb':
             save_name += os.path.basename(args.ckpt_path).split('_')[-2]
 
-        test(model, test_img, args.save_dir, save_name)
+        test(model, test_img, args.save_dir, save_name, scale=args.scale)

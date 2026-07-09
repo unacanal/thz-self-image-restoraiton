@@ -10,6 +10,11 @@ from torch.nn import init
 import PIL
 import sys
 from torchvision import transforms
+
+try:
+    BICUBIC = PIL.Image.Resampling.BICUBIC
+except AttributeError:  # Pillow < 9.1
+    BICUBIC = PIL.Image.BICUBIC
 import tqdm
 import wandb
 import argparse
@@ -41,7 +46,7 @@ def train(model, img, target, args, save_name, ckpt_dir):
 
     loss = nn.L1Loss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    sampler = DataSampler(img, target, crop_size)
+    sampler = DataSampler(img, target, crop_size, scale=args.scale)
     
     best_loss = float('inf')
     model.cuda()
@@ -82,8 +87,14 @@ def train(model, img, target, args, save_name, ckpt_dir):
                 break
             
 
-def test(model, img, save_name):
+def test(model, img, save_name, scale=1):
     model.eval()
+
+    if scale > 1:
+        # ZSSR inference: bicubic-upscale the input by `scale`, then let the
+        # network restore the high-frequency details at the enlarged resolution.
+        w, h = img.size
+        img = img.resize((w * scale, h * scale), BICUBIC)
 
     img = transforms.ToTensor()(img)
     img = torch.unsqueeze(img, 0)
@@ -116,6 +127,8 @@ def get_args():
     parser.add_argument('--model', type=str, default='ZSSR', help='Model name')
     parser.add_argument('--exp', type=str, default='o2o', help='Experiment name')
     parser.add_argument('--volt', type=str, default=None, help='Voltage')
+    parser.add_argument('--scale', type=int, default=1, \
+        help='ZSSR super-resolution scale factor (1 = no upscaling)')
 
     args = parser.parse_args()
 
@@ -134,7 +147,6 @@ if __name__ == '__main__':
     args = get_args()
     
     img = PIL.Image.open(args.img)
-
     target = PIL.Image.open(args.target)
     num_channels = len(np.array(target).shape)
     print('num_channels:', num_channels)
@@ -164,7 +176,12 @@ if __name__ == '__main__':
     img_name = os.path.splitext(os.path.basename(args.img))[0]
     target_name = os.path.splitext(os.path.basename(args.target))[0]
 
-    if '_'.join(img_name.split('_')[:-1]) == '_'.join(target_name.split('_')[:-1]):
+    if 'recurrent' in args.exp:
+        save_name = '_'.join(img_name.split('_')[:-1]) + '_' + \
+                    img_name.split('_')[-1] + \
+                    'to' + target_name.split('_')[-1]
+        
+    elif '_'.join(img_name.split('_')[:-1]) == '_'.join(target_name.split('_')[:-1]):
         # if two image names are same
         save_name = '_'.join(img_name.split('_')[:-1]) + '_' + \
                     img_name.split('_')[-1].split('THz')[0] + \
@@ -173,15 +190,18 @@ if __name__ == '__main__':
         save_name = '_'.join(img_name.split('_')[:-1]) + '_' + \
                     img_name.split('_')[-1].split('THz')[0] + \
                     '_to_' + target_name
-    print(save_name)
+    
+    print('img:', img_name)
+    print('target:', target_name)
+    print('save:', save_name)
     wandb.init(project='thz-self-image-restoration', name=f'{args.exp}_{save_name}_{args.model}')
     
     if args.volt:
         ckpt_dir = 'checkpoints_volt'
     else:
-        ckpt_dir = 'checkpoints'
+        ckpt_dir = 'checkpoints_main'
 
     os.makedirs(f'{ckpt_dir}/{args.model}_{args.exp}', exist_ok=True)
     train(model, img, target, args, save_name, ckpt_dir)
     torch.save(model.state_dict(), os.path.join(ckpt_dir, f'{args.model}_{args.exp}', f'{save_name}_latest.pt'))
-    test(model, target, save_name)
+    test(model, target, save_name, scale=args.scale)

@@ -16,8 +16,7 @@ class ZSSRNet(nn.Module):
 		self.conv5 = nn.Conv2d(channels, channels, kernel_size=kernel_size, padding=kernel_size//2, bias=True)
 		self.conv6 = nn.Conv2d(channels, channels, kernel_size=kernel_size, padding=kernel_size//2, bias=True)
 		self.conv7 = nn.Conv2d(channels, input_channels, kernel_size=kernel_size, padding=kernel_size//2, bias=True)
-
-		self.relu = nn.ReLU()
+		self.relu = nn.ReLU() # nn.LeakyReLU(negative_slope=0.2, inplace=True) # 
 
 	def forward(self, x):
 		x = self.relu(self.conv0(x))
@@ -31,6 +30,21 @@ class ZSSRNet(nn.Module):
 
 		return x
 
+class ZSN2N(nn.Module):
+    def __init__(self, n_chan, chan_embed=48):
+        super(ZSN2N, self).__init__()
+        
+        self.act = nn.LeakyReLU(negative_slope=0.2, inplace=True)
+        self.conv1 = nn.Conv2d(n_chan, chan_embed, 3, padding=1)
+        self.conv2 = nn.Conv2d(chan_embed, chan_embed, 3, padding=1)
+        self.conv3 = nn.Conv2d(chan_embed, n_chan, 1)
+
+    def forward(self, x):
+        x = self.act(self.conv1(x))
+        x = self.act(self.conv2(x))
+        x = self.conv3(x)
+        
+        return x
 
 '''CAIR'''
 def get_gaussian_kernel(kernel_size=21, sigma=5, channels=3):
